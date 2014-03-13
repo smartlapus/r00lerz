@@ -1,0 +1,9 @@
+grammar com.r00lerz.ruleDef.RuleDef with org.eclipse.xtext.common.Terminals
+
+generate ruleDef "http://www.r00lerz.com/ruleDef/RuleDef"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
