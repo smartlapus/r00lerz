@@ -6,6 +6,7 @@ package com.r00lerz.ruleDef.generator
 import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
+import com.r00lerz.ruleDef.ruleDef.BusinessRule
 
 /**
  * Generates code from your model files on save.
@@ -15,10 +16,17 @@ import org.eclipse.xtext.generator.IFileSystemAccess
 class RuleDefGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(typeof(Greeting))
-//				.map[name]
-//				.join(', '))
+
+		for(e: resource.allContents.toIterable.filter(BusinessRule)) {
+			fsa.generateFile(
+			"generatedcode.sql",
+			e.compile)		
+		}
 	}
+	
+	def compile(BusinessRule r) '''
+    	-evaluates business rule *name of business rule here*    
+    	«r.columnvalue.tablename.name».«r.columnvalue.columname.name» «IF r.operator.operatorName == "bigger than"» > «ELSE» < «ENDIF» «r.value.value.name»	
+    	
+    '''
 }

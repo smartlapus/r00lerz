@@ -6,21 +6,21 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Greeting</b></em>'.
+ * A representation of the model object '<em><b>Static Value</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link com.r00lerz.ruleDef.ruleDef.Greeting#getName <em>Name</em>}</li>
+ *   <li>{@link com.r00lerz.ruleDef.ruleDef.StaticValue#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
- * @see com.r00lerz.ruleDef.ruleDef.RuleDefPackage#getGreeting()
+ * @see com.r00lerz.ruleDef.ruleDef.RuleDefPackage#getStaticValue()
  * @model
  * @generated
  */
-public interface Greeting extends EObject
+public interface StaticValue extends EObject
 {
   /**
    * Returns the value of the '<em><b>Name</b></em>' attribute.
@@ -31,21 +31,21 @@ public interface Greeting extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Name</em>' attribute.
-   * @see #setName(String)
-   * @see com.r00lerz.ruleDef.ruleDef.RuleDefPackage#getGreeting_Name()
+   * @see #setName(int)
+   * @see com.r00lerz.ruleDef.ruleDef.RuleDefPackage#getStaticValue_Name()
    * @model
    * @generated
    */
-  String getName();
+  int getName();
 
   /**
-   * Sets the value of the '{@link com.r00lerz.ruleDef.ruleDef.Greeting#getName <em>Name</em>}' attribute.
+   * Sets the value of the '{@link com.r00lerz.ruleDef.ruleDef.StaticValue#getName <em>Name</em>}' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @param value the new value of the '<em>Name</em>' attribute.
    * @see #getName()
    * @generated
    */
-  void setName(String value);
+  void setName(int value);
 
-} // Greeting
+} // StaticValue

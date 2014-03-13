@@ -37,9 +37,20 @@ public class RuleDefParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
-					put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-					put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+					put(grammarAccess.getValueAccess().getAlternatives(), "rule__Value__Alternatives");
+					put(grammarAccess.getOperatorAccess().getOperatorNameAlternatives_0(), "rule__Operator__OperatorNameAlternatives_0");
+					put(grammarAccess.getBusinessRuleAccess().getGroup(), "rule__BusinessRule__Group__0");
+					put(grammarAccess.getColumnValueAccess().getGroup(), "rule__ColumnValue__Group__0");
+					put(grammarAccess.getBusinessRuleAccess().getColumnvalueAssignment_0(), "rule__BusinessRule__ColumnvalueAssignment_0");
+					put(grammarAccess.getBusinessRuleAccess().getOperatorAssignment_2(), "rule__BusinessRule__OperatorAssignment_2");
+					put(grammarAccess.getBusinessRuleAccess().getValueAssignment_4(), "rule__BusinessRule__ValueAssignment_4");
+					put(grammarAccess.getValueAccess().getValueAssignment_0(), "rule__Value__ValueAssignment_0");
+					put(grammarAccess.getColumnValueAccess().getTablenameAssignment_0(), "rule__ColumnValue__TablenameAssignment_0");
+					put(grammarAccess.getColumnValueAccess().getColumnameAssignment_2(), "rule__ColumnValue__ColumnameAssignment_2");
+					put(grammarAccess.getColumnNameAccess().getNameAssignment(), "rule__ColumnName__NameAssignment");
+					put(grammarAccess.getTableNameAccess().getNameAssignment(), "rule__TableName__NameAssignment");
+					put(grammarAccess.getStaticValueAccess().getNameAssignment(), "rule__StaticValue__NameAssignment");
+					put(grammarAccess.getOperatorAccess().getOperatorNameAssignment(), "rule__Operator__OperatorNameAssignment");
 				}
 			};
 		}
@@ -50,7 +61,7 @@ public class RuleDefParser extends AbstractContentAssistParser {
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			com.r00lerz.ruleDef.ui.contentassist.antlr.internal.InternalRuleDefParser typedParser = (com.r00lerz.ruleDef.ui.contentassist.antlr.internal.InternalRuleDefParser) parser;
-			typedParser.entryRuleModel();
+			typedParser.entryRuleBusinessRule();
 			return typedParser.getFollowElements();
 		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);

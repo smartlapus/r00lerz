@@ -2,8 +2,8 @@
  */
 package com.r00lerz.ruleDef.ruleDef.impl;
 
-import com.r00lerz.ruleDef.ruleDef.Greeting;
 import com.r00lerz.ruleDef.ruleDef.RuleDefPackage;
+import com.r00lerz.ruleDef.ruleDef.TableName;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,18 +14,18 @@ import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Greeting</b></em>'.
+ * An implementation of the model object '<em><b>Table Name</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link com.r00lerz.ruleDef.ruleDef.impl.GreetingImpl#getName <em>Name</em>}</li>
+ *   <li>{@link com.r00lerz.ruleDef.ruleDef.impl.TableNameImpl#getName <em>Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeting
+public class TableNameImpl extends MinimalEObjectImpl.Container implements TableName
 {
   /**
    * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -52,7 +52,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
    * <!-- end-user-doc -->
    * @generated
    */
-  protected GreetingImpl()
+  protected TableNameImpl()
   {
     super();
   }
@@ -65,7 +65,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   @Override
   protected EClass eStaticClass()
   {
-    return RuleDefPackage.Literals.GREETING;
+    return RuleDefPackage.Literals.TABLE_NAME;
   }
 
   /**
@@ -88,7 +88,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     String oldName = name;
     name = newName;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, RuleDefPackage.GREETING__NAME, oldName, name));
+      eNotify(new ENotificationImpl(this, Notification.SET, RuleDefPackage.TABLE_NAME__NAME, oldName, name));
   }
 
   /**
@@ -101,7 +101,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case RuleDefPackage.GREETING__NAME:
+      case RuleDefPackage.TABLE_NAME__NAME:
         return getName();
     }
     return super.eGet(featureID, resolve, coreType);
@@ -117,7 +117,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case RuleDefPackage.GREETING__NAME:
+      case RuleDefPackage.TABLE_NAME__NAME:
         setName((String)newValue);
         return;
     }
@@ -134,7 +134,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case RuleDefPackage.GREETING__NAME:
+      case RuleDefPackage.TABLE_NAME__NAME:
         setName(NAME_EDEFAULT);
         return;
     }
@@ -151,7 +151,7 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
   {
     switch (featureID)
     {
-      case RuleDefPackage.GREETING__NAME:
+      case RuleDefPackage.TABLE_NAME__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
     }
     return super.eIsSet(featureID);
@@ -174,4 +174,4 @@ public class GreetingImpl extends MinimalEObjectImpl.Container implements Greeti
     return result.toString();
   }
 
-} //GreetingImpl
+} //TableNameImpl

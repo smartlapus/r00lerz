@@ -2,8 +2,30 @@ grammar com.r00lerz.ruleDef.RuleDef with org.eclipse.xtext.common.Terminals
 
 generate ruleDef "http://www.r00lerz.com/ruleDef/RuleDef"
 
-Model:
-	greetings+=Greeting*;
+BusinessRule:
+	columnvalue = ColumnValue ' ' operator = Operator ' ' value = Value
+;
 	
-Greeting:
-	'Hello' name=ID '!';
+Value:
+	value = StaticValue | ColumnValue
+;
+
+ColumnValue:
+	tablename = TableName'.' columname = ColumnName
+;
+
+ColumnName:
+	name=ID
+;
+
+TableName:
+	name=ID
+;
+
+StaticValue:
+	name=INT
+;
+
+Operator:
+	name = ('bigger than' | 'smaller than')
+;

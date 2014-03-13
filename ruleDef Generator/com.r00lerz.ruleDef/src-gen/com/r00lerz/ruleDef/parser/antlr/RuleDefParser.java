@@ -25,7 +25,7 @@ public class RuleDefParser extends org.eclipse.xtext.parser.antlr.AbstractAntlrP
 	
 	@Override 
 	protected String getDefaultRuleName() {
-		return "Model";
+		return "BusinessRule";
 	}
 	
 	public RuleDefGrammarAccess getGrammarAccess() {

@@ -64,8 +64,13 @@ public class RuleDefFactoryImpl extends EFactoryImpl implements RuleDefFactory
   {
     switch (eClass.getClassifierID())
     {
-      case RuleDefPackage.MODEL: return createModel();
-      case RuleDefPackage.GREETING: return createGreeting();
+      case RuleDefPackage.BUSINESS_RULE: return createBusinessRule();
+      case RuleDefPackage.VALUE: return createValue();
+      case RuleDefPackage.COLUMN_VALUE: return createColumnValue();
+      case RuleDefPackage.COLUMN_NAME: return createColumnName();
+      case RuleDefPackage.TABLE_NAME: return createTableName();
+      case RuleDefPackage.STATIC_VALUE: return createStaticValue();
+      case RuleDefPackage.OPERATOR: return createOperator();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -76,10 +81,10 @@ public class RuleDefFactoryImpl extends EFactoryImpl implements RuleDefFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Model createModel()
+  public BusinessRule createBusinessRule()
   {
-    ModelImpl model = new ModelImpl();
-    return model;
+    BusinessRuleImpl businessRule = new BusinessRuleImpl();
+    return businessRule;
   }
 
   /**
@@ -87,10 +92,65 @@ public class RuleDefFactoryImpl extends EFactoryImpl implements RuleDefFactory
    * <!-- end-user-doc -->
    * @generated
    */
-  public Greeting createGreeting()
+  public Value createValue()
   {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
+    ValueImpl value = new ValueImpl();
+    return value;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ColumnValue createColumnValue()
+  {
+    ColumnValueImpl columnValue = new ColumnValueImpl();
+    return columnValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public ColumnName createColumnName()
+  {
+    ColumnNameImpl columnName = new ColumnNameImpl();
+    return columnName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public TableName createTableName()
+  {
+    TableNameImpl tableName = new TableNameImpl();
+    return tableName;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public StaticValue createStaticValue()
+  {
+    StaticValueImpl staticValue = new StaticValueImpl();
+    return staticValue;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public Operator createOperator()
+  {
+    OperatorImpl operator = new OperatorImpl();
+    return operator;
   }
 
   /**

@@ -2,10 +2,15 @@
  */
 package com.r00lerz.ruleDef.ruleDef.impl;
 
-import com.r00lerz.ruleDef.ruleDef.Greeting;
-import com.r00lerz.ruleDef.ruleDef.Model;
+import com.r00lerz.ruleDef.ruleDef.BusinessRule;
+import com.r00lerz.ruleDef.ruleDef.ColumnName;
+import com.r00lerz.ruleDef.ruleDef.ColumnValue;
+import com.r00lerz.ruleDef.ruleDef.Operator;
 import com.r00lerz.ruleDef.ruleDef.RuleDefFactory;
 import com.r00lerz.ruleDef.ruleDef.RuleDefPackage;
+import com.r00lerz.ruleDef.ruleDef.StaticValue;
+import com.r00lerz.ruleDef.ruleDef.TableName;
+import com.r00lerz.ruleDef.ruleDef.Value;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
@@ -27,14 +32,49 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass modelEClass = null;
+  private EClass businessRuleEClass = null;
 
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    */
-  private EClass greetingEClass = null;
+  private EClass valueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass columnValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass columnNameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass tableNameEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass staticValueEClass = null;
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  private EClass operatorEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -104,9 +144,9 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getModel()
+  public EClass getBusinessRule()
   {
-    return modelEClass;
+    return businessRuleEClass;
   }
 
   /**
@@ -114,9 +154,9 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getModel_Greetings()
+  public EReference getBusinessRule_Columnvalue()
   {
-    return (EReference)modelEClass.getEStructuralFeatures().get(0);
+    return (EReference)businessRuleEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -124,9 +164,9 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EClass getGreeting()
+  public EReference getBusinessRule_Operator()
   {
-    return greetingEClass;
+    return (EReference)businessRuleEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -134,9 +174,139 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getGreeting_Name()
+  public EReference getBusinessRule_Value()
   {
-    return (EAttribute)greetingEClass.getEStructuralFeatures().get(0);
+    return (EReference)businessRuleEClass.getEStructuralFeatures().get(2);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getValue()
+  {
+    return valueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getValue_Value()
+  {
+    return (EReference)valueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getColumnValue()
+  {
+    return columnValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getColumnValue_Tablename()
+  {
+    return (EReference)columnValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getColumnValue_Columname()
+  {
+    return (EReference)columnValueEClass.getEStructuralFeatures().get(1);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getColumnName()
+  {
+    return columnNameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getColumnName_Name()
+  {
+    return (EAttribute)columnNameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getTableName()
+  {
+    return tableNameEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getTableName_Name()
+  {
+    return (EAttribute)tableNameEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getStaticValue()
+  {
+    return staticValueEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getStaticValue_Name()
+  {
+    return (EAttribute)staticValueEClass.getEStructuralFeatures().get(0);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EClass getOperator()
+  {
+    return operatorEClass;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getOperator_OperatorName()
+  {
+    return (EAttribute)operatorEClass.getEStructuralFeatures().get(0);
   }
 
   /**
@@ -169,11 +339,29 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
     isCreated = true;
 
     // Create classes and their features
-    modelEClass = createEClass(MODEL);
-    createEReference(modelEClass, MODEL__GREETINGS);
+    businessRuleEClass = createEClass(BUSINESS_RULE);
+    createEReference(businessRuleEClass, BUSINESS_RULE__COLUMNVALUE);
+    createEReference(businessRuleEClass, BUSINESS_RULE__OPERATOR);
+    createEReference(businessRuleEClass, BUSINESS_RULE__VALUE);
 
-    greetingEClass = createEClass(GREETING);
-    createEAttribute(greetingEClass, GREETING__NAME);
+    valueEClass = createEClass(VALUE);
+    createEReference(valueEClass, VALUE__VALUE);
+
+    columnValueEClass = createEClass(COLUMN_VALUE);
+    createEReference(columnValueEClass, COLUMN_VALUE__TABLENAME);
+    createEReference(columnValueEClass, COLUMN_VALUE__COLUMNAME);
+
+    columnNameEClass = createEClass(COLUMN_NAME);
+    createEAttribute(columnNameEClass, COLUMN_NAME__NAME);
+
+    tableNameEClass = createEClass(TABLE_NAME);
+    createEAttribute(tableNameEClass, TABLE_NAME__NAME);
+
+    staticValueEClass = createEClass(STATIC_VALUE);
+    createEAttribute(staticValueEClass, STATIC_VALUE__NAME);
+
+    operatorEClass = createEClass(OPERATOR);
+    createEAttribute(operatorEClass, OPERATOR__OPERATOR_NAME);
   }
 
   /**
@@ -205,13 +393,32 @@ public class RuleDefPackageImpl extends EPackageImpl implements RuleDefPackage
     // Set bounds for type parameters
 
     // Add supertypes to classes
+    columnValueEClass.getESuperTypes().add(this.getValue());
 
     // Initialize classes and features; add operations and parameters
-    initEClass(modelEClass, Model.class, "Model", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getModel_Greetings(), this.getGreeting(), null, "greetings", null, 0, -1, Model.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(businessRuleEClass, BusinessRule.class, "BusinessRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getBusinessRule_Columnvalue(), this.getColumnValue(), null, "columnvalue", null, 0, 1, BusinessRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBusinessRule_Operator(), this.getOperator(), null, "operator", null, 0, 1, BusinessRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getBusinessRule_Value(), this.getValue(), null, "value", null, 0, 1, BusinessRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-    initEClass(greetingEClass, Greeting.class, "Greeting", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getGreeting_Name(), ecorePackage.getEString(), "name", null, 0, 1, Greeting.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEClass(valueEClass, Value.class, "Value", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getValue_Value(), this.getStaticValue(), null, "value", null, 0, 1, Value.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(columnValueEClass, ColumnValue.class, "ColumnValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEReference(getColumnValue_Tablename(), this.getTableName(), null, "tablename", null, 0, 1, ColumnValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getColumnValue_Columname(), this.getColumnName(), null, "columname", null, 0, 1, ColumnValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(columnNameEClass, ColumnName.class, "ColumnName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getColumnName_Name(), ecorePackage.getEString(), "name", null, 0, 1, ColumnName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(tableNameEClass, TableName.class, "TableName", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getTableName_Name(), ecorePackage.getEString(), "name", null, 0, 1, TableName.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(staticValueEClass, StaticValue.class, "StaticValue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getStaticValue_Name(), ecorePackage.getEInt(), "name", null, 0, 1, StaticValue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+    initEClass(operatorEClass, Operator.class, "Operator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+    initEAttribute(getOperator_OperatorName(), ecorePackage.getEString(), "OperatorName", null, 0, 1, Operator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);
