@@ -3,19 +3,11 @@
  */
 package com.r00lerz.ruleDef.generator;
 
-import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.r00lerz.ruleDef.ruleDef.BusinessRule;
-import com.r00lerz.ruleDef.ruleDef.ColumnName;
-import com.r00lerz.ruleDef.ruleDef.ColumnValue;
-import com.r00lerz.ruleDef.ruleDef.Operator;
-import com.r00lerz.ruleDef.ruleDef.StaticValue;
-import com.r00lerz.ruleDef.ruleDef.TableName;
-import com.r00lerz.ruleDef.ruleDef.Value;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
@@ -39,37 +31,8 @@ public class RuleDefGenerator implements IGenerator {
   }
   
   public CharSequence compile(final BusinessRule r) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("-evaluates business rule *name of business rule here*    ");
-    _builder.newLine();
-    ColumnValue _columnvalue = r.getColumnvalue();
-    TableName _tablename = _columnvalue.getTablename();
-    String _name = _tablename.getName();
-    _builder.append(_name, "");
-    _builder.append(".");
-    ColumnValue _columnvalue_1 = r.getColumnvalue();
-    ColumnName _columname = _columnvalue_1.getColumname();
-    String _name_1 = _columname.getName();
-    _builder.append(_name_1, "");
-    _builder.append(" ");
-    {
-      Operator _operator = r.getOperator();
-      String _operatorName = _operator.getOperatorName();
-      boolean _equals = Objects.equal(_operatorName, "bigger than");
-      if (_equals) {
-        _builder.append(" > ");
-      } else {
-        _builder.append(" < ");
-      }
-    }
-    _builder.append(" ");
-    Value _value = r.getValue();
-    StaticValue _value_1 = _value.getValue();
-    int _name_2 = _value_1.getName();
-    _builder.append(_name_2, "");
-    _builder.append("\t");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method operatorName is undefined for the type RuleDefGenerator"
+      + "\n== cannot be resolved");
   }
 }

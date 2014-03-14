@@ -4,6 +4,12 @@
 *.jar
 *.war
 *.ear
+
+# Folders #
+
 src-gen/
+bin/
 /bin
+
+# Temp files #
 .gitignore~

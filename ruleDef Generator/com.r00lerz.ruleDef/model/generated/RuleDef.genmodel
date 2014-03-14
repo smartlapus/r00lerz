@@ -29,7 +29,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RuleDef.ecore#//StaticValue/name"/>
     </genClasses>
     <genClasses ecoreClass="RuleDef.ecore#//Operator">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RuleDef.ecore#//Operator/OperatorName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute RuleDef.ecore#//Operator/name"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
