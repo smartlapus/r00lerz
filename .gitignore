@@ -4,6 +4,6 @@
 *.jar
 *.war
 *.ear
-*src-gen
+src-gen/
 /bin
 .gitignore~
