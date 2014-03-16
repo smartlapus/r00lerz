@@ -7,7 +7,7 @@ BusinessRule:
 ;
 	
 Value:
-	value = StaticValue | ColumnValue
+	StaticValue |  ColumnValue
 ;
 
 ColumnValue:

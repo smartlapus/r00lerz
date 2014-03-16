@@ -3,10 +3,12 @@
  */
 package com.r00lerz.ruleDef.generator
 
-import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
-import org.eclipse.xtext.generator.IFileSystemAccess
 import com.r00lerz.ruleDef.ruleDef.BusinessRule
+import com.r00lerz.ruleDef.ruleDef.ColumnValue
+import com.r00lerz.ruleDef.ruleDef.StaticValue
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.eclipse.xtext.generator.IGenerator
 
 /**
  * Generates code from your model files on save.
@@ -24,9 +26,17 @@ class RuleDefGenerator implements IGenerator {
 		}
 	}
 	
-	def compile(BusinessRule r) '''
+	def compile(BusinessRule r){ '''
     	-evaluates business rule *name of business rule here*    
-    	«r.columnvalue.tablename.name».«r.columnvalue.columname.name» «IF r.operator.name == "bigger than"» > «ELSE» < «ENDIF» «r.value.value.name»	
-    	
+    	«r.columnvalue.valueToString» «IF r.operator.name == "bigger than"» > «ELSE» < «ENDIF» «r.value.valueToString»	
     '''
+    }
+    
+    def dispatch valueToString(ColumnValue columnValue){
+    	columnValue.tablename.name + "." + columnValue.columname.name
+    }
+    
+    def dispatch valueToString(StaticValue staticValue){
+    	staticValue.name
+    }
 }
