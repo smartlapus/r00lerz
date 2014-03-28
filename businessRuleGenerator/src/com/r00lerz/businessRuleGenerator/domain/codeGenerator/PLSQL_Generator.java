@@ -1,4 +1,4 @@
-package com.r00lerz.businessRuleGenerator.codeGenerator;
+package com.r00lerz.businessRuleGenerator.domain.codeGenerator;
 
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
