@@ -14,5 +14,5 @@ bin/
 
 # Temp files #
 .gitignore~
-!businessRuleGenerator/lib/ruleDefLang.jar
-
+!businessRuleGenerator/lib/*
+!businessRuleGenerator/WebContent/WEB-INF/lib/*
