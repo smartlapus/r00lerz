@@ -9,7 +9,6 @@
     <constant name="struts.devMode" value="false" />
 
     <package name="default" namespace="/" extends="struts-default">
-
         <default-action-ref name="index" />
 
         <global-results>
@@ -19,7 +18,14 @@
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
+        
+        <action name="activate" class="com.r00lerz.businessRuleGenerator.communication.struts.ActiveRuleAction">
+			<result>/activate.html</result>
+		</action>
 
+        <action name="define" class="com.r00lerz.businessRuleGenerator.communication.struts.DefineNewRuleAction">
+			<result>/define.html</result>
+		</action>
        
     </package>
 
