@@ -27,7 +27,11 @@ public class Application {
 		return applicationInstance;
 	}
 	
-	public void generateRule(Map businessRule){
-		
+	public void generateRule(Map businessRuleMap){
+		String ruleString = "";
+		ruleString+= businessRuleMap.get("lhsValue");
+		ruleString+= businessRuleMap.get("operator");
+		ruleString+= businessRuleMap.get("rhsValue1");
+		ruleString+= businessRuleMap.get("rhsValue2");
 	}
 }
