@@ -20,11 +20,11 @@
         </global-exception-mappings>
         
         <action name="activate" class="com.r00lerz.businessRuleGenerator.communication.struts.ActiveRuleAction">
-			<result>/activate.html</result>
+			<result>/activate.jsp</result>
 		</action>
 
         <action name="define" class="com.r00lerz.businessRuleGenerator.communication.struts.DefineNewRuleAction">
-			<result>/define.html</result>
+			<result>/define.jsp</result>
 		</action>
        
     </package>
