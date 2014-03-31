@@ -20,15 +20,10 @@
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
 
-        <action name="index">
-            <result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>
-        </action>
+       
     </package>
 
-    <include file="example.xml"/>
+   
 
     <!-- Add packages here -->
 
