@@ -3,6 +3,7 @@ package com.r00lerz.businessRuleGenerator.domain.datamodel;
 import java.util.HashMap;
 import java.util.List;
 
+import com.r00lerz.businessRuleGenerator.connection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 
 public class Application {
@@ -12,9 +13,10 @@ public class Application {
 	
 	private List businessRules;
 	private CodeGenerator codeGenerator;
+	private TargetConnection targetConnection;
 	
 	public void generateRule(HashMap businessRule){
-		//
+		
 	}
 
 }
