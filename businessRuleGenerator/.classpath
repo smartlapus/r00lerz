@@ -32,5 +32,9 @@
 	<classpathentry kind="lib" path="lib/org.osgi.compendium-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/org.osgi.core-4.3.1.jar"/>
 	<classpathentry kind="lib" path="lib/ruleDefLang.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.4-javadoc.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.4-sources.jar"/>
+	<classpathentry kind="lib" path="lib/gson-2.2.4.jar"/>
+	<classpathentry kind="lib" path="lib/ojdbc6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
