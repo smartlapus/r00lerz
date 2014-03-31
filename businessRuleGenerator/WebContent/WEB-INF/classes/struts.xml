@@ -27,7 +27,7 @@
 			<result>/define.jsp</result>
 		</action>
        
-		<action name="getTargetData" class="com.r00lerz.businessRuleGenerator.communication.struts.GetTargetData">
+		<action name="getTargetData" class="com.r00lerz.businessRuleGenerator.communication.struts.GetTargetDataAction">
 			<result>/targetData.jsp</result>
 		</action> 
     </package>
