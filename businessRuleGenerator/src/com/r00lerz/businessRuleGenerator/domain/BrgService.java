@@ -1,5 +1,14 @@
 package com.r00lerz.businessRuleGenerator.domain;
 
-public class BrgService {
+import java.util.HashMap;
 
+public interface BrgService {
+	public void generateRule(HashMap businessRule);
+	
+	
+	public void activeBusinessRule(int id);
+	
+	
+	public void deactivateBusinessRule(int id);
+	
 }

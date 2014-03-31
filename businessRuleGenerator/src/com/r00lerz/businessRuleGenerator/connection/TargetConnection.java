@@ -1,5 +1,6 @@
 package com.r00lerz.businessRuleGenerator.connection;
 
-public class TargetConnection {
-
+public interface TargetConnection {
+	public void persist();
+	public void getTargetData();
 }
