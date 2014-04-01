@@ -16,7 +16,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class GetTargetDataAction extends ActionSupport{
 	String JSON = "";
 	Gson gson = new Gson();
-	String jsoncallback = "";
+	String callback = "";
 	
 	//names of parameters here
 	
@@ -94,11 +94,11 @@ public class GetTargetDataAction extends ActionSupport{
 			this.JSON = JSON;
 		}
 		
-		public String getJsoncallback() {
-			return jsoncallback;
+		public String getCallback() {
+			return callback;
 		}
 		
-		public void setJsoncallback(String jsoncallback) {
-			this.jsoncallback = jsoncallback;
+		public void setCallback(String callback) {
+			this.callback = callback;
 		}
 }
