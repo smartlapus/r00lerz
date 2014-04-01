@@ -1,15 +1,12 @@
 package com.r00lerz.businessRuleGenerator.communication.struts;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-
-import javax.servlet.ServletContext;
 
 import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionSupport;
-import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
+import com.r00lerz.businessRuleGenerator.domain.BrgService;
+import com.r00lerz.businessRuleGenerator.domain.BrgServiceImpl;
 
 public class DefineNewRuleAction extends ActionSupport {
 
@@ -21,11 +18,9 @@ public class DefineNewRuleAction extends ActionSupport {
 	@Override
 	public String execute() {
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
+		BrgService service = BrgServiceImpl.getService();
 		
-		//Skipp call, needs to be fixed
-		Application application = Application.getInstance();
-
-		application.generateRule(lhsValue, operator, rhsValues, realPath);
+		service.generateRule(lhsValue, operator, rhsValues, realPath);
 		
 		return ActionSupport.SUCCESS;
 	}

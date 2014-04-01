@@ -1,7 +1,6 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 import java.util.List;
-import java.util.Map;
 
 import com.r00lerz.businessRuleGenerator.connection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
@@ -18,15 +17,8 @@ public class Application {
 	private CodeGenerator codeGenerator;
 	private TargetConnection targetConnection;
 	
-	private Application(){
+	public Application(){
 		codeGenerator = new PLSQL_Generator();
-	}
-	
-	public static Application getInstance(){
-		if(applicationInstance == null){
-			applicationInstance = new Application();
-		}
-		return applicationInstance;
 	}
 	
 	public void generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
@@ -45,6 +37,6 @@ public class Application {
 		}
 		
 		String generatedCode = codeGenerator.generateRule(ruleString, realPath);
-		System.out.println(generatedCode);
+		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, "unknown", "unknown", generatedCode);
 	}
 }
