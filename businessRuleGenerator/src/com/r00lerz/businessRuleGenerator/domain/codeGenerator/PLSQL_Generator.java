@@ -1,6 +1,7 @@
 package com.r00lerz.businessRuleGenerator.domain.codeGenerator;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
@@ -14,19 +15,34 @@ import java.nio.file.Paths;
 public class PLSQL_Generator implements CodeGenerator {
 
 	@Override
-	public String generateRule(String rule) {
+	public String generateRule(String rule, String realPath) {
+		System.out.println("GENERATING: " + rule);
+		
 		try {
-			PrintWriter out = new PrintWriter("src-gen/input.rdef");
+			if (!new File(realPath+"src-gen").isDirectory()) {
+				System.out.println("dir not found");
+				boolean success = (new File(realPath+"src-gen").mkdirs());
+				if (!success) {
+				    System.out.println("failed too create directory");
+				}
+				else{
+					System.out.println("directory created");
+				}
+				
+			}
+			File file = new File(realPath+"src-gen/input.rdef");
+			PrintWriter out = new PrintWriter(file);
 			out.println(rule);
 			out.close();
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
+		
 
 		Process proc;
 		try {
 			proc = Runtime.getRuntime().exec(
-					"java -jar lib/ruleDefLang.jar src-gen/input.rdef");
+					"java -jar " + realPath + "WEB-INF/lib/ruleDefLang.jar " + realPath+"src-gen/input.rdef " + realPath);
 			InputStream in = proc.getInputStream();
 			InputStream err = proc.getErrorStream();
 			InputStreamReader isr = new InputStreamReader(err);
@@ -46,7 +62,7 @@ public class PLSQL_Generator implements CodeGenerator {
 		String result = "";
 
 		try {
-			result = PLSQL_Generator.readFile("src-gen/generatedcode.sql",
+			result = PLSQL_Generator.readFile(realPath + "src-gen/generatedcode.sql",
 					Charset.defaultCharset());
 		} catch (IOException e) {
 			//
@@ -67,8 +83,7 @@ public class PLSQL_Generator implements CodeGenerator {
 
 	public static void main(String[] args) {
 		CodeGenerator cg = new PLSQL_Generator();
-		String s = cg.generateRule("domein.model must be bigger than 1000");
+		String s = cg.generateRule("domein.model must be bigger than 1000", "");
 		System.out.println("generated business rule: " + s);
 	}
-
 }

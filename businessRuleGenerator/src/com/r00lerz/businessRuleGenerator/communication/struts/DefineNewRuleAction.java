@@ -4,6 +4,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+
+import org.apache.struts2.ServletActionContext;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
 
@@ -16,20 +20,12 @@ public class DefineNewRuleAction extends ActionSupport {
 
 	@Override
 	public String execute() {
+		String realPath = ServletActionContext.getServletContext().getRealPath("/");
 		
-		Map<String, String> businessRuleMap = new HashMap<String, String>();
+		//Skipp call, needs to be fixed
 		Application application = Application.getInstance();
-		
-		businessRuleMap.put("lhsValue", lhsValue);
-		businessRuleMap.put("operator", operator);
-		
-		int index = 1;
-		for (String value : rhsValues){
-			businessRuleMap.put("rhsValue"+index, value);
-			index++;
-		}
-		
-		application.generateRule(lhsValue, operator, rhsValues);
+
+		application.generateRule(lhsValue, operator, rhsValues, realPath);
 		
 		return ActionSupport.SUCCESS;
 	}
