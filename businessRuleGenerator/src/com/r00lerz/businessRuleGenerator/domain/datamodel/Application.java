@@ -27,11 +27,16 @@ public class Application {
 		return applicationInstance;
 	}
 	
-	public void generateRule(Map businessRuleMap){
-		String ruleString = "";
-		ruleString+= businessRuleMap.get("lhsValue");
-		ruleString+= businessRuleMap.get("operator");
-		ruleString+= businessRuleMap.get("rhsValue1");
-		ruleString+= businessRuleMap.get("rhsValue2");
+	public void generateRule(String lhsValue, String operator, List<String> rhsValues){
+		String ruleString = lhsValue + " ";
+		ruleString+= operator + " ";
+		for (int i = 0; i < rhsValues.size(); i++){
+			ruleString+= rhsValues.get(i);
+			if ((rhsValues.size() == 2) && i == 0){
+				ruleString += " and ";
+			}
+		}
+		
+		System.out.println(ruleString);
 	}
 }
