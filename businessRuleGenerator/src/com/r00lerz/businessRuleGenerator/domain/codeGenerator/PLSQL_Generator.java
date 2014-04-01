@@ -8,6 +8,8 @@ import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.google.inject.Injector;
 import com.r00lerz.ruleDef.generator.Main;
@@ -15,7 +17,7 @@ import com.r00lerz.ruleDef.generator.Main;
 public class PLSQL_Generator implements CodeGenerator {
 
 	@Override
-	public String generateRule(String rule, String realPath) {
+	public Map<String, String> generateRule(String rule, String realPath) {
 		Injector injector = new com.r00lerz.ruleDef.RuleDefStandaloneSetup().createInjectorAndDoEMFRegistration();
 		Main generator = injector.getInstance(Main.class);
 		
@@ -64,15 +66,20 @@ public class PLSQL_Generator implements CodeGenerator {
 		String outputPath = realPath;
 		generator.runGenerator(inputPath, outputPath);
 
-		String result = "";
-
+		String generatedCode = "";
+		String ruleType = "";
+		Map<String,String> result = new HashMap<String, String>(); 
 		try {
-			result = PLSQL_Generator.readFile(realPath + "src-gen/generatedcode.sql",
+			generatedCode = PLSQL_Generator.readFile(realPath + "src-gen/generatedcode.sql",
+					Charset.defaultCharset());
+			ruleType = PLSQL_Generator.readFile(realPath + "src-gen/ruletype.txt",
 					Charset.defaultCharset());
 		} catch (IOException e) {
 			//
 			e.printStackTrace();
 		}
+		result.put("generatedCode", generatedCode);
+		result.put("ruleType", ruleType);
 		
 		return result;
 	}
@@ -87,9 +94,9 @@ public class PLSQL_Generator implements CodeGenerator {
 		return encoding.decode(ByteBuffer.wrap(encoded)).toString();
 	}
 
-	public static void main(String[] args) {
-		CodeGenerator cg = new PLSQL_Generator();
-		String s = cg.generateRule("domein.model must be bigger than 1000", "");
-		System.out.println("generated business rule: " + s);
-	}
+//	public static void main(String[] args) {
+//		CodeGenerator cg = new PLSQL_Generator();
+//		String s = cg.generateRule("domein.model must be bigger than 1000", "");
+//		System.out.println("generated business rule: " + s);
+//	}
 }

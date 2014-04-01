@@ -1,6 +1,7 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 import java.util.List;
+import java.util.Map;
 
 import com.r00lerz.businessRuleGenerator.connection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
@@ -36,7 +37,7 @@ public class Application {
 			}
 		}
 		
-		String generatedCode = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, "unknown", "unknown", generatedCode);
+		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
+		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, "unknown", generationResult.get("ruleType"), generationResult.get("generatedCode"));
 	}
 }
