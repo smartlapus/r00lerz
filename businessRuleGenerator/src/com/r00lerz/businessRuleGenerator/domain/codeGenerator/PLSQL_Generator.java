@@ -62,7 +62,7 @@ public class PLSQL_Generator implements CodeGenerator {
 //		} catch (Throwable t) {
 //			t.printStackTrace();
 //		}
-		String inputPath = realPath + "src-gen/input.rdef";
+		String inputPath = realPath + "src-gen\\input.rdef";
 		String outputPath = realPath;
 		generator.runGenerator(inputPath, outputPath);
 
@@ -70,9 +70,9 @@ public class PLSQL_Generator implements CodeGenerator {
 		String ruleType = "";
 		Map<String,String> result = new HashMap<String, String>(); 
 		try {
-			generatedCode = PLSQL_Generator.readFile(realPath + "src-gen/generatedcode.sql",
+			generatedCode = PLSQL_Generator.readFile(realPath + "src-gen\\generatedcode.sql",
 					Charset.defaultCharset());
-			ruleType = PLSQL_Generator.readFile(realPath + "src-gen/ruletype.txt",
+			ruleType = PLSQL_Generator.readFile(realPath + "src-gen\\ruletype.txt",
 					Charset.defaultCharset());
 		} catch (IOException e) {
 			//

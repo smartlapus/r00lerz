@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- First step is to configure the DOCTYPE. This is located in: hibernate-release-4.3.4.Final\project\hibernate-core\src\main\resources\org\hibernate\hibernate-configuration-3.0.dtd -->
+
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+	
+	<!-- Settings are found in the hibernate.properties file located in \hibernate-release-4.3.4.Final\project\etc -->
+
+		<!-- Connection to the database -->
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property> <!-- Defines the driver, thus oracle -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@localhost:1521:orcl</property> <!-- Defines the connection url and type of database (express vs orcl) -->
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property> <!-- Defines the dialect for SQL translation (10g) -->
+		<property name="hibernate.connection.username"></property>
+		<property name="hibernate.connection.password"></property>
+		
+		<!-- You may want to disable the auto-commit to prevent issues with "out of synch commits"  -->
+		<property name="hibernate.connection.autocommit">false</property>
+		
+		<!-- Console logging SQL Query generated when running the program -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.use_sql_comments">true</property>
+		
+		<!-- For the JDBC Transaction -->
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		
+		<!-- Mapping file -->
+		<mapping resource="BusinessRule.hbm.xml"/>
+		
+		<!-- 
+		
+			Following steps:
+			1. Classes made Serializable
+			2. Generate getters and setters for all values that match the ERD.
+			
+			Mapping files.
+			All values from the ERD have to be mapped. This is done in files named [xx].hbm.xml (hmb = hibernate mapping)
+			
+			
+			The .JAR's of the hibernate version have to be implemented.
+		
+		 -->
+		
+	</session-factory>
+</hibernate-configuration>

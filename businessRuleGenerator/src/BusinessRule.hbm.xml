@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- First step is to configure the DOCTYPE. This is located in: hibernate-release-4.3.4.Final\project\hibernate-core\src\main\resources\org\hibernate\hibernate-mapping-3.0.dtd -->
+<!-- Second steps are to simply ctrl+space for "generic" structure -->
+
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<!-- Class you want to store -->
+	<class name="BusinessRule" table="TableName">
+	
+		<!-- types are hibernate specific, look em up. -->
+		<id name="nameOfAttribute" column="tableAttribute" type="integer">
+			<!-- This means you will assign them, auto-generate? PK? -->
+			<generator class="assigned"></generator>
+		</id>
+		
+		<!-- For other names/columns you can use property -->
+		<property name="name" column="tableAttribute" type="string"></property>
+		<property name="anotherName" column="tableAttribute" type="string"></property>
+	</class>
+
+</hibernate-mapping>
