@@ -1,32 +1,35 @@
 package com.r00lerz.businessRuleGenerator.domain.codeGenerator;
 
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.nio.ByteBuffer;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
+import com.google.inject.Injector;
+import com.r00lerz.ruleDef.generator.Main;
+
 public class PLSQL_Generator implements CodeGenerator {
 
 	@Override
 	public String generateRule(String rule, String realPath) {
-		System.out.println("GENERATING: " + rule);
+		Injector injector = new com.r00lerz.ruleDef.RuleDefStandaloneSetup().createInjectorAndDoEMFRegistration();
+		Main generator = injector.getInstance(Main.class);
+		
+		System.out.println("PLSQL_Generator.generateRule::GENERATING: " + rule);
 		
 		try {
 			if (!new File(realPath+"src-gen").isDirectory()) {
-				System.out.println("dir not found");
+				System.out.println("PLSQL_Generator.generateRule::dir not found");
 				boolean success = (new File(realPath+"src-gen").mkdirs());
 				if (!success) {
-				    System.out.println("failed too create directory");
+				    System.out.println("PLSQL_Generator.generateRule::failed too create directory");
 				}
 				else{
-					System.out.println("directory created");
+					System.out.println("PLSQL_Generator.generateRule::directory created");
 				}
 				
 			}
@@ -38,26 +41,28 @@ public class PLSQL_Generator implements CodeGenerator {
 			e1.printStackTrace();
 		}
 		
-
-		Process proc;
-		try {
-			proc = Runtime.getRuntime().exec(
-					"java -jar \"" + realPath + "WEB-INF/lib/ruleDefLang.jar\" " + realPath+"src-gen/input.rdef " + realPath);
-			InputStream in = proc.getInputStream();
-			InputStream err = proc.getErrorStream();
-			InputStreamReader isr = new InputStreamReader(err);
-			BufferedReader br = new BufferedReader(isr);
-			String line = null;
-			System.out.println("<ERROR OUTPUT>");
-			while ((line = br.readLine()) != null)
-				System.out.println(line);
-			System.out.println("</ERROR OUTPUT>");
-			int exitVal = proc.waitFor();
-			in.close();
-			err.close();
-		} catch (Throwable t) {
-			t.printStackTrace();
-		}
+//		Process proc;
+//		try {
+//			proc = Runtime.getRuntime().exec(
+//					"java -jar \"" + realPath + "WEB-INF/lib/ruleDefLang.jar\" " + realPath+"src-gen/input.rdef " + realPath);
+//			InputStream in = proc.getInputStream();
+//			InputStream err = proc.getErrorStream();
+//			InputStreamReader isr = new InputStreamReader(err);
+//			BufferedReader br = new BufferedReader(isr);
+//			String line = null;
+//			System.out.println("<ERROR OUTPUT>");
+//			while ((line = br.readLine()) != null)
+//				System.out.println(line);
+//			System.out.println("</ERROR OUTPUT>");
+//			int exitVal = proc.waitFor();
+//			in.close();
+//			err.close();
+//		} catch (Throwable t) {
+//			t.printStackTrace();
+//		}
+		String inputPath = realPath + "src-gen/input.rdef";
+		String outputPath = realPath;
+		generator.runGenerator(inputPath, outputPath);
 
 		String result = "";
 
@@ -68,6 +73,7 @@ public class PLSQL_Generator implements CodeGenerator {
 			//
 			e.printStackTrace();
 		}
+		
 		return result;
 	}
 
