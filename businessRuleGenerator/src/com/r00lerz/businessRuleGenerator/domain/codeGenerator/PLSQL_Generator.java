@@ -42,7 +42,7 @@ public class PLSQL_Generator implements CodeGenerator {
 		Process proc;
 		try {
 			proc = Runtime.getRuntime().exec(
-					"java -jar " + realPath + "WEB-INF/lib/ruleDefLang.jar " + realPath+"src-gen/input.rdef " + realPath);
+					"java -jar \"" + realPath + "WEB-INF/lib/ruleDefLang.jar\" " + realPath+"src-gen/input.rdef " + realPath);
 			InputStream in = proc.getInputStream();
 			InputStream err = proc.getErrorStream();
 			InputStreamReader isr = new InputStreamReader(err);
