@@ -7,4 +7,9 @@ public class Operator {
 	public Operator(String operator) {
 		this.name = operator;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }

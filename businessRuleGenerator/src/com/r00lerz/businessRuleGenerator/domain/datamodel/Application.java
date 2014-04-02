@@ -21,9 +21,13 @@ public class Application {
 	
 	public Application(){
 		codeGenerator = new PLSQL_Generator();
+		businessRules = new ArrayList<BusinessRule>();
+		
+		this.brgNaam = "AwesomeCodeGenerator";
+		this.appNaam = "ApplicationNameHere";
 	}
 	
-	public void generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
 		String ruleString = lhsValue + " ";
 		ruleString+= operator + " ";
 		
@@ -38,14 +42,18 @@ public class Application {
 			}
 		}
 		
+		String currentName = brgNaam.substring(0, 3).toUpperCase() + "_" + appNaam.substring(0, 3).toUpperCase() + "_" + "TRG";
+		
 		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		BusinessRule generatedRule = new BusinessRule(currentName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		
+		return generatedRule.toString();
 	}
 	
 	public static void main(String[]args){
 		ArrayList<String> rhsValues = new ArrayList<String>();
 		rhsValues.add("18");
-		BusinessRule br = new BusinessRule("person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
+		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
 		//TODO::Some code to persist the rule here.
 		System.out.println(br);
 	}
