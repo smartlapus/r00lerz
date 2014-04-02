@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2014 11:12:03 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="DemoOrderItems" table="DEMO_ORDER_ITEMS">
+        <id name="orderItemId" type="short">
+            <column name="ORDER_ITEM_ID" precision="3" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="demoProductInfo" class="DemoProductInfo" fetch="select">
+            <column name="PRODUCT_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="demoOrders" class="DemoOrders" fetch="select">
+            <column name="ORDER_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="unitPrice" type="big_decimal">
+            <column name="UNIT_PRICE" precision="8" not-null="true" />
+        </property>
+        <property name="quantity" type="int">
+            <column name="QUANTITY" precision="8" scale="0" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

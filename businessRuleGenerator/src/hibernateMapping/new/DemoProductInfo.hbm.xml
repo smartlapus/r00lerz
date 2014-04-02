@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2014 11:12:03 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="DemoProductInfo" table="DEMO_PRODUCT_INFO">
+        <id name="productId" type="big_decimal">
+            <column name="PRODUCT_ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="productName" type="string">
+            <column name="PRODUCT_NAME" length="50" />
+        </property>
+        <property name="productDescription" type="string">
+            <column name="PRODUCT_DESCRIPTION" length="2000" />
+        </property>
+        <property name="category" type="string">
+            <column name="CATEGORY" length="30" />
+        </property>
+        <property name="productAvail" type="string">
+            <column name="PRODUCT_AVAIL" length="1" />
+        </property>
+        <property name="listPrice" type="big_decimal">
+            <column name="LIST_PRICE" precision="8" />
+        </property>
+        <property name="productImage" type="blob">
+            <column name="PRODUCT_IMAGE" />
+        </property>
+        <property name="mimetype" type="string">
+            <column name="MIMETYPE" />
+        </property>
+        <property name="filename" type="string">
+            <column name="FILENAME" length="400" />
+        </property>
+        <property name="imageLastUpdate" type="date">
+            <column name="IMAGE_LAST_UPDATE" length="7" />
+        </property>
+        <set name="demoOrderItemses" table="DEMO_ORDER_ITEMS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUCT_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="DemoOrderItems" />
+        </set>
+    </class>
+</hibernate-mapping>

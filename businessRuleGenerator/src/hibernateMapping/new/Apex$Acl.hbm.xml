@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2014 11:12:03 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Apex$Acl" table="APEX$_ACL">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="wsAppId" type="big_decimal">
+            <column name="WS_APP_ID" precision="22" scale="0" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="USERNAME" not-null="true" />
+        </property>
+        <property name="priv" type="string">
+            <column name="PRIV" length="1" not-null="true" />
+        </property>
+        <property name="createdOn" type="date">
+            <column name="CREATED_ON" length="7" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="CREATED_BY" not-null="true" />
+        </property>
+        <property name="updatedOn" type="date">
+            <column name="UPDATED_ON" length="7" />
+        </property>
+        <property name="updatedBy" type="string">
+            <column name="UPDATED_BY" />
+        </property>
+    </class>
+</hibernate-mapping>

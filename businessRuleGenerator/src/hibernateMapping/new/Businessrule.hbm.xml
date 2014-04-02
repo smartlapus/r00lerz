@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 2, 2014 11:12:03 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="Businessrule" table="BUSINESSRULE">
+        <id name="id" type="big_decimal">
+            <column name="ID" precision="22" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="backEndRuleType" class="BackEndRuleType" fetch="select">
+            <column name="BACK_END_RULE_TYPE_NAME" length="64" not-null="true" />
+        </many-to-one>
+        <many-to-one name="frontEndRuletype" class="FrontEndRuletype" fetch="select">
+            <column name="FRONT_END_RULETYPE_NAME" length="64" not-null="true" />
+        </many-to-one>
+        <many-to-one name="application" class="Application" fetch="select">
+            <column name="APPLICATION_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="businessrule" class="Businessrule" fetch="select">
+            <column name="CONDITION_BUSINESS_RULE_ID" precision="22" scale="0" />
+        </many-to-one>
+        <many-to-one name="value" class="Value" fetch="select">
+            <column name="TARGET_VALUE_ID" precision="22" scale="0" not-null="true" />
+        </many-to-one>
+        <many-to-one name="operator" class="Operator" fetch="select">
+            <column name="OPERATOR_NAME" length="64" not-null="true" />
+        </many-to-one>
+        <property name="name" type="string">
+            <column name="NAME" length="64" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="512" />
+        </property>
+        <set name="businessrules" table="BUSINESSRULE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CONDITION_BUSINESS_RULE_ID" precision="22" scale="0" />
+            </key>
+            <one-to-many class="Businessrule" />
+        </set>
+        <set name="generatedcodes" table="GENERATEDCODE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BUSINESSRULE_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Generatedcode" />
+        </set>
+        <set name="values" table="VALUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BUSINESSRULE_ID" precision="22" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Value" />
+        </set>
+    </class>
+</hibernate-mapping>
