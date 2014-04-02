@@ -10,5 +10,120 @@
         <property name="hibernate.connection.username">tho7_2013_2a_team4</property>
         <property name="hibernate.default_schema">THO7_2013_2A_TEAM4</property>
         <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+        
+        <!-- You may want to disable the auto-commit to prevent issues with "out of synch commits"  -->
+		<property name="hibernate.connection.autocommit">false</property>
+		
+		<!-- Console logging SQL Query generated when running the program -->
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.format_sql">true</property>
+		<property name="hibernate.use_sql_comments">true</property>
+		
+		<!-- For the JDBC Transaction -->
+		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
+		
+		<!-- Mapping file -->
+		<mapping resource="hibernateMapping/Application.hbm.xml"/>
+		<mapping resource="hibernateMapping/BusinessRule.hbm.xml"/>
+		<mapping resource="hibernateMapping/GeneratedCode.hbm.xml"/>
+		<mapping resource="hibernateMapping/Value.hbm.xml"/>
+		<mapping resource="hibernateMapping/Language.hbm.xml"/>
+		<mapping resource="hibernateMapping/Operator.hbm.xml"/>
+		<mapping resource="hibernateMapping/ValueType.hbm.xml"/>
+		<mapping resource="hibernateMapping/BackEndRuleType.hbm.xml"/>
+		<mapping resource="hibernateMapping/FrontEndRuleType.hbm.xml"/>
+		
+		
+		
+		
+			
     </session-factory>
 </hibernate-configuration>
+
+
+<!-- 
+		
+			Following steps:
+			1. Classes made Serializable
+			2. Generate getters and setters for all values that match the ERD.
+			
+			Mapping files.
+			All values from the ERD have to be mapped. This is done in files named [xx].hbm.xml (hmb = hibernate mapping)
+			
+			
+			The .JAR's of the hibernate version have to be implemented. (have been added!)
+			
+			
+			Then:
+			
+			Somewhere where you'll want to start/use hibernate. (with a static java program you'd do this in Main)
+				##
+				Configuration cfg = new Configuration();
+				cfg.configure("Hibernate.cfg.xml"); :: What configuration file are you using.
+				##
+			
+			Then you make a SessionFactory:
+				##
+				SessionFactory sf = cfg.buildSessionFactory();
+				Session s = sf.openSession();
+				Transaction tx = s.beginTransaction();
+				##
+				
+			Saving object to database:
+				##
+				Employee emp = new Employee();
+				emp.setId(1);
+				emp.setName("whatever");
+				emp.setOther("blabla");
+				
+				s.save(emp);  	This would save the object in session
+				s.flush();  	SQL Query is generated
+				tx.commit();	Commits the transaction
+				s.close();		Session is closed
+				##
+			
+			For One-To-Many:
+				##
+				BusinessRule br = new BusinessRule();
+				br.setBla(xx);
+				br.setBlo(uu);
+				
+				Value vl1 = new Value();
+				vl1.setBli(xx);
+				vl1.setBla(oo);
+				
+				Value vl2 = new Value();
+				vl2.setBli(xy);
+				vl2.setBla(op);
+				
+				List<Value> valueList = new ArrayList<Value>();
+				valueList.add(vl1);
+				valueList.add(vl2);
+				
+				br.setValues(valueList); :: to BusinessRule.
+				
+				s.save(br); :: Save all the actual objects, can also use: "saveOrUpdate".
+				s.save(vl1); 
+				s.save(vl2);
+				tx.commit();
+				s.close();
+					
+				
+				##
+				
+			One to many relationship:
+				Create the configuration file (should already be there tbh, just following a 2nd tutorial)
+				Do all the steps as above, so class -> mapping -> etc.
+				
+				Different within the "many" is to create a List. For example, a BusinessRule will have a "private List value". As it will possibly have a list of values.
+				Use List as it has indexing?
+				
+				Check the BusinessRule.hbm.xml file to see how One-To-Many mapping is done.
+				
+			Actually get the last ID, so you can add non-manual primary keys:
+				Change things in your Mapping file. ID is set to assigned earlier, now you'll change it to "increment".
+				
+			
+			
+		
+		 -->

@@ -4,6 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.cfg.Configuration;
+
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
@@ -60,6 +65,22 @@ public class Application {
 		app.businessRules.add(br);
 		
 		//TODO::Some code to persist the rule here.
+		
+		
+		Configuration cfg = new Configuration();
+		cfg.configure("hibernate.cfg.xml"); //:: What configuration file are you using.
+	
+		SessionFactory session_factory = cfg.buildSessionFactory();
+		Session session = session_factory.openSession();
+		Transaction transaction = session.beginTransaction();
+		
+		
+		session.save(br);  	//This would save the object in session
+		session.flush();  	//SQL Query is generated
+		transaction.commit();	//Commits the transaction
+		session.close();		//Session is closed
+		
+		
 		System.out.println(br);
 	}
 }
