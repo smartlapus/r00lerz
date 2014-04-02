@@ -22,6 +22,9 @@ public class Application {
 	public Application(){
 		codeGenerator = new PLSQL_Generator();
 		businessRules = new ArrayList<BusinessRule>();
+		
+		this.brgNaam = "AwesomeCodeGenerator";
+		this.appNaam = "ApplicationNameHere";
 	}
 	
 	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
