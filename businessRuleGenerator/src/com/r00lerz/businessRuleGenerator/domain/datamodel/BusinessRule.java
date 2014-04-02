@@ -25,6 +25,18 @@ public class BusinessRule {
 		System.out.println("BackendRuleType = " + backEndRuleType);
 		System.out.println("FrontendRuleType = " + frontEndRuleType);
 		System.out.println("GeneratedCode = \n" + generatedCode);
+		
+		/*TODO:: Add name to code somewhere :: -evaluates business rule «r.generateName»
+    	//DYNAMIC APP NAME
+    	//Entity abbreviation
+    	//Implement rule type retrieval for other rule types
+    	//dynamic numbering*/
+		//
+		//"BRG_APPNAME_"+r.lhs_value.entity.name.substring(0,3).toUpperCase+"_TRG_" +
+		//case r.attributeRangeRule : "ARR"
+		//case r.attributeCompareRule : "ACR"
+		//case r.tupleCompareRule : "TCR"
+		//default : "ERROR"
 	}
 
 }
