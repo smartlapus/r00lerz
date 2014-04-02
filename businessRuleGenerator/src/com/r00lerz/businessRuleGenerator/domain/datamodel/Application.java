@@ -51,9 +51,14 @@ public class Application {
 	}
 	
 	public static void main(String[]args){
+
+		
 		ArrayList<String> rhsValues = new ArrayList<String>();
 		rhsValues.add("18");
 		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
+		Application app = new Application();
+		app.businessRules.add(br);
+		
 		//TODO::Some code to persist the rule here.
 		System.out.println(br);
 	}
