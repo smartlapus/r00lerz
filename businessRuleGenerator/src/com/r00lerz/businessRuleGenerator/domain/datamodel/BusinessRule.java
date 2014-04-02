@@ -18,10 +18,9 @@ public class BusinessRule {
 	private FrontEndRuleType frontEndRuleType;
 	private List<GeneratedCode> generatedCode;
 	
-	public BusinessRule(String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
+	public BusinessRule(String currentName, String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
-		this.name = "we need to add a method to generate the name";
 		this.description = description;
 		
 		this.lhsValue = new Value(lhsValue);
@@ -35,22 +34,14 @@ public class BusinessRule {
 		
 		this.generatedCode = new ArrayList<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
+		
+		this.name = this.generateName(currentName);
 	}
 	
 	public String generateName(String currentName){
-		return "we need to implement name generation";
-		
-		/*TODO:: Add name to code somewhere :: -evaluates business rule «r.generateName»
-    	//DYNAMIC APP NAME
+		return currentName + "_" + frontEndRuleType.getAbbreviation();
     	//Entity abbreviation
-    	//Implement rule type retrieval for other rule types
     	//dynamic numbering*/
-		//
-		//"BRG_APPNAME_"+r.lhs_value.entity.name.substring(0,3).toUpperCase+"_TRG_" +
-		//case r.attributeRangeRule : "ARR"
-		//case r.attributeCompareRule : "ACR"
-		//case r.tupleCompareRule : "TCR"
-		//default : "ERROR"
 	}
 	
 	@Override

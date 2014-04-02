@@ -25,4 +25,8 @@ public class FrontEndRuleType {
 		default:						abbreviation = "ERR";
 		}
 	}
+	
+	public String getAbbreviation(){
+		return abbreviation;
+	}
 }
