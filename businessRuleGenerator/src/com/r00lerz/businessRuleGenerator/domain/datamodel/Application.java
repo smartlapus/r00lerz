@@ -21,9 +21,10 @@ public class Application {
 	
 	public Application(){
 		codeGenerator = new PLSQL_Generator();
+		businessRules = new ArrayList<BusinessRule>();
 	}
 	
-	public void generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
 		String ruleString = lhsValue + " ";
 		ruleString+= operator + " ";
 		
@@ -40,6 +41,8 @@ public class Application {
 		
 		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
 		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		
+		return generatedRule.toString();
 	}
 	
 	public static void main(String[]args){

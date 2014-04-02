@@ -65,7 +65,7 @@ public class BusinessRule {
 				+ "rhsValues= " 	+ rhsValues + "\n" 
 				+ "backEndRuleType= " + backEndRuleType + "\n"
 				+ "frontEndRuleType= " + frontEndRuleType + "\n" 
-				+ "generatedCode= " + generatedCode + "]";
+				+ "generatedCode= " + generatedCode;
 	}
 	
 	

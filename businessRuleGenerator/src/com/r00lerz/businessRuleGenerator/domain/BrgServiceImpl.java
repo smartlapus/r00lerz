@@ -21,8 +21,8 @@ public class BrgServiceImpl implements BrgService {
 	};
 
 	@Override
-	public void generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
-		application.generateRule(lhsValue, operator, rhsValues, realPath);
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
+		return application.generateRule(lhsValue, operator, rhsValues, realPath);
 	}
 
 	@Override

@@ -9,18 +9,22 @@ import com.r00lerz.businessRuleGenerator.domain.BrgService;
 import com.r00lerz.businessRuleGenerator.domain.BrgServiceImpl;
 
 public class DefineNewRuleAction extends ActionSupport {
-
+	
+	//In parameters
 	private String lhsValue;
 	private String operator;
 	private List<String> rhsValues;
 	
+	//Out parameters
+	private String result;
 
 	@Override
 	public String execute() {
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
 		BrgService service = BrgServiceImpl.getService();
 		
-		service.generateRule(lhsValue, operator, rhsValues, realPath);
+		String result = service.generateRule(lhsValue, operator, rhsValues, realPath);
+		this.result = result;
 		
 		return ActionSupport.SUCCESS;
 	}
@@ -40,5 +44,9 @@ public class DefineNewRuleAction extends ActionSupport {
 	
 	public void setRhsValues(List<String> rhsValues){
 		this.rhsValues = rhsValues;
+	}
+	
+	public String getResult(){
+		return result;
 	}
 }
