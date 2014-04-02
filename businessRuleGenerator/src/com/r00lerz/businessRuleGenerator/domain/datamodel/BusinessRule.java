@@ -1,9 +1,11 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BusinessRule {
 	
+	private int id;
 	private String name;
 	private String description;
 	private BusinessRule condition;
@@ -16,15 +18,28 @@ public class BusinessRule {
 	private FrontEndRuleType frontEndRuleType;
 	private List<GeneratedCode> generatedCode;
 	
-	public BusinessRule(String name, String lhsValue,String operator, List<String> rhsValues, String backEndRuleType, String frontEndRuleType, String generatedCode){
+	public BusinessRule(String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
-		System.out.println("Name = "+name);
-		System.out.println("LhsValue = " + lhsValue);
-		System.out.println("Operator = " + operator);
-		System.out.println("RhsValues = " + rhsValues);
-		System.out.println("BackendRuleType = " + backEndRuleType);
-		System.out.println("FrontendRuleType = " + frontEndRuleType);
-		System.out.println("GeneratedCode = \n" + generatedCode);
+		
+		this.id = 00; //TODO add a method to get an id from the database
+		this.name = "we need to add a method to generate the name";
+		this.description = description;
+		
+		this.lhsValue = new Value(lhsValue);
+		this.operator = new Operator(operator); //TODO::This should be replaced with a call to the database to get an excisting operator
+		this.rhsValues = new ArrayList<Value>();
+		for (String valueString : rhsValues){
+			this.rhsValues.add(new Value(valueString));
+		}
+		this.backEndRuleType = null; //TODO::This needs to be replaced with some way to get the backendRuleType.
+		this.frontEndRuleType = new FrontEndRuleType(frontEndRuleType);
+		
+		this.generatedCode = new ArrayList<GeneratedCode>();
+		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
+	}
+	
+	public String generateName(String currentName){
+		return "we need to implement name generation";
 		
 		/*TODO:: Add name to code somewhere :: -evaluates business rule «r.generateName»
     	//DYNAMIC APP NAME
@@ -38,5 +53,4 @@ public class BusinessRule {
 		//case r.tupleCompareRule : "TCR"
 		//default : "ERROR"
 	}
-
 }

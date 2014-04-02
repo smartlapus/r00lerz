@@ -38,6 +38,6 @@ public class Application {
 		}
 		
 		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, "unknown", generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		BusinessRule generatedRule = new BusinessRule(ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
 	}
 }
