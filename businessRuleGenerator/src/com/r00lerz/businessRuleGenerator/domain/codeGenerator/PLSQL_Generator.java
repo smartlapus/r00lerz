@@ -35,7 +35,7 @@ public class PLSQL_Generator implements CodeGenerator {
 				}
 				
 			}
-			File file = new File(realPath+"src-gen/input.rdef");
+			File file = new File(realPath+"src-gen"+File.separator+"input.rdef");
 			PrintWriter out = new PrintWriter(file);
 			out.println(rule);
 			out.close();
@@ -62,7 +62,7 @@ public class PLSQL_Generator implements CodeGenerator {
 //		} catch (Throwable t) {
 //			t.printStackTrace();
 //		}
-		String inputPath = realPath + "src-gen\\input.rdef";
+		String inputPath = realPath + "src-gen"+File.separator+"input.rdef";
 		String outputPath = realPath;
 		generator.runGenerator(inputPath, outputPath);
 
@@ -70,9 +70,9 @@ public class PLSQL_Generator implements CodeGenerator {
 		String ruleType = "";
 		Map<String,String> result = new HashMap<String, String>(); 
 		try {
-			generatedCode = PLSQL_Generator.readFile(realPath + "src-gen\\generatedcode.sql",
+			generatedCode = PLSQL_Generator.readFile(realPath + "src-gen"+File.separator+"generatedcode.sql",
 					Charset.defaultCharset());
-			ruleType = PLSQL_Generator.readFile(realPath + "src-gen\\ruletype.txt",
+			ruleType = PLSQL_Generator.readFile(realPath + "src-gen"+File.separator+"ruletype.txt",
 					Charset.defaultCharset());
 		} catch (IOException e) {
 			//
