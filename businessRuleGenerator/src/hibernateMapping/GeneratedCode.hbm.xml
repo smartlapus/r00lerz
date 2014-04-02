@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.r00lerz.businessRuleGenerator.domain.datamodel.GeneratedCode" table="GeneratedCode">	
+		<!-- id is the IDENTIFIER tag. -->
+		<id name="language" column="Language_name" type="string" unsaved-value="-1" > </id>
+		<property name="business_rule_code" column="business_rule_code" type="string"></property>
+	</class>
+</hibernate-mapping>
