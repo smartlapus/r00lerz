@@ -21,7 +21,6 @@ public class BusinessRule {
 	public BusinessRule(String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
-		this.id = 00; //TODO add a method to get an id from the database
 		this.name = "we need to add a method to generate the name";
 		this.description = description;
 		
@@ -52,5 +51,10 @@ public class BusinessRule {
 		//case r.attributeCompareRule : "ACR"
 		//case r.tupleCompareRule : "TCR"
 		//default : "ERROR"
+	}
+	
+	@Override
+	public String toString() {
+		return "br to string needs to be generated";
 	}
 }
