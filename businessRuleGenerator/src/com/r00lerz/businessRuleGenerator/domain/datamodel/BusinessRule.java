@@ -55,6 +55,14 @@ public class BusinessRule {
 	
 	@Override
 	public String toString() {
-		return "br to string needs to be generated";
+		return "BusinessRule [id=" + id + ", name=" + name + ", description="
+				+ description + ", condition=" + condition + ", lhsValue="
+				+ lhsValue + ", operator=" + operator + ", rhsValues="
+				+ rhsValues + ", backEndRuleType=" + backEndRuleType
+				+ ", frontEndRuleType=" + frontEndRuleType + ", generatedCode="
+				+ generatedCode + "]";
 	}
+	
+	
+	
 }
