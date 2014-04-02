@@ -55,12 +55,17 @@ public class BusinessRule {
 	
 	@Override
 	public String toString() {
-		return "BusinessRule [id=" + id + ", name=" + name + ", description="
-				+ description + ", condition=" + condition + ", lhsValue="
-				+ lhsValue + ", operator=" + operator + ", rhsValues="
-				+ rhsValues + ", backEndRuleType=" + backEndRuleType
-				+ ", frontEndRuleType=" + frontEndRuleType + ", generatedCode="
-				+ generatedCode + "]";
+		return "BusinessRule:\n"
+				+ "id= " + id+"\n"
+				+ "name= " + name+"\n" 
+				+ "description= " + description + "\n" 
+				+ "condition= " + condition + "\n" 
+				+ "lhsValue= "+ lhsValue + "\n" 
+				+ "operator= " + operator + "\n" 
+				+ "rhsValues= " 	+ rhsValues + "\n" 
+				+ "backEndRuleType= " + backEndRuleType + "\n"
+				+ "frontEndRuleType= " + frontEndRuleType + "\n" 
+				+ "generatedCode= " + generatedCode + "]";
 	}
 	
 	

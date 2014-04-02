@@ -10,4 +10,10 @@ public class GeneratedCode {
 		//TODO:: set the language of the generated code
 		this.business_rule_code = generatedCode;
 	}
+	
+	@Override
+	public String toString() {
+		return business_rule_code;
+	}
+	
 }

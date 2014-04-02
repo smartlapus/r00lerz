@@ -7,4 +7,9 @@ public class FrontEndRuleType {
 	public FrontEndRuleType(String frontEndRuleType) {
 		this.name = frontEndRuleType;
 	}
+	
+	@Override
+	public String toString() {
+		return name;
+	}
 }
