@@ -3,7 +3,6 @@
 
 <hibernate-mapping>
 	<class name="com.r00lerz.businessRuleGenerator.domain.datamodel.Application" table="APPLICATION">
-		
 		<!-- id is the IDENTIFIER tag. -->
 		<id name="id" column="ID" type="integer" unsaved-value="-1" > 
 			<!-- Auto increment -->
@@ -12,7 +11,4 @@
 		<property name="brgNaam" column="brg_name" type="string"></property>
 		<property name="appNaam" column="app_name" type="string"></property>
 	</class>
-
-
-
 </hibernate-mapping>

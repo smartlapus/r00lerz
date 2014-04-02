@@ -1,4 +1,4 @@
-package com.r00lerz.businessRuleGenerator.connection;
+package com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection;
 
 public class OracleTargetConnection implements TargetConnection {
 

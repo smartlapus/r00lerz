@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import com.r00lerz.businessRuleGenerator.connection.TargetConnection;
+import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
