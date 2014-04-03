@@ -20,8 +20,8 @@ public class Application {
 	
 	private static Application applicationInstance;
 	
-	private String brgNaam;
-	private String appNaam;
+	private String appName;
+	private String appNameAbbreviation;
 	
 	private List<BusinessRule> businessRules;
 	private CodeGenerator codeGenerator;
@@ -31,8 +31,8 @@ public class Application {
 		codeGenerator = new PLSQL_Generator();
 		businessRules = new ArrayList<BusinessRule>();
 		
-		this.brgNaam = "AwesomeCodeGenerator";
-		this.appNaam = "ApplicationNameHere";
+		this.appName = "ApplicationNameHere";
+		this.appNameAbbreviation = "ANH";
 	}
 	
 	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
@@ -50,10 +50,10 @@ public class Application {
 			}
 		}
 		
-		String currentName = brgNaam.substring(0, 3).toUpperCase() + "_" + appNaam.substring(0, 3).toUpperCase() + "_" + "TRG";
+		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
 		
 		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(currentName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
 		
 		return generatedRule.toString();
 	}

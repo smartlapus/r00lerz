@@ -18,7 +18,7 @@ public class BusinessRule {
 	private FrontEndRuleType frontEndRuleType;
 	private List<GeneratedCode> generatedCode;
 	
-	public BusinessRule(String currentName, String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
+	public BusinessRule(String appPartRuleName, String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
 		this.description = description;
@@ -35,11 +35,14 @@ public class BusinessRule {
 		this.generatedCode = new ArrayList<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
 		
-		this.name = this.generateName(currentName);
+		this.name = this.generateName(appPartRuleName);
 	}
 	
-	public String generateName(String currentName){
-		return currentName + "_" + frontEndRuleType.getAbbreviation();
+	public String generateName(String appPartRuleName){
+		String entityAbr = lhsValue.abbreviateEntityName();
+		String ruleTypeAbr = frontEndRuleType.getAbbreviation();
+		
+		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + "GENERATED_NUMBER_HERE";
     	//Entity abbreviation
     	//dynamic numbering*/
 	}
