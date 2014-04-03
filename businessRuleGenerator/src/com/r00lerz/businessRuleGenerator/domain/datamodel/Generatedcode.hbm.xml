@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 3-apr-2014 2:03:25 by Hibernate Tools 4.0.0 -->
+<!-- Generated Apr 3, 2014 3:17:38 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="Generatedcode" table="GENERATEDCODE">
+    <class name="com.r00lerz.businessRuleGenerator.domain.datamodel.Generatedcode" table="GENERATEDCODE">
         <composite-id name="id" class="com.r00lerz.businessRuleGenerator.domain.datamodel.GeneratedcodeId">
             <key-property name="businessruleId" type="big_decimal">
                 <column name="BUSINESSRULE_ID" precision="22" scale="0" />
@@ -12,10 +12,10 @@
                 <column name="LANGUAGE_NAME" length="64" />
             </key-property>
         </composite-id>
-        <many-to-one name="businessrule" class="Businessrule" update="false" insert="false" fetch="select">
+        <many-to-one name="businessrule" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Businessrule" update="false" insert="false" fetch="select">
             <column name="BUSINESSRULE_ID" precision="22" scale="0" not-null="true" />
         </many-to-one>
-        <many-to-one name="language" class="Language" update="false" insert="false" fetch="select">
+        <many-to-one name="language" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Language" update="false" insert="false" fetch="select">
             <column name="LANGUAGE_NAME" length="64" not-null="true" />
         </many-to-one>
         <property name="businessRuleCode" type="clob">

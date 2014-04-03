@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 3, 2014 3:17:38 PM by Hibernate Tools 4.0.0 -->
+<hibernate-mapping>
+    <class name="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType" table="BACK_END_RULE_TYPE">
+        <id name="name" type="string">
+            <column name="NAME" length="64" />
+            <generator class="assigned" />
+        </id>
+        <set name="businessrules" table="BUSINESSRULE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BACK_END_RULE_TYPE_NAME" length="64" not-null="true" />
+            </key>
+            <one-to-many class="com.r00lerz.businessRuleGenerator.domain.datamodel.Businessrule" />
+        </set>
+        <set name="operators" table="ALLOWED_OPERATORS" inverse="false" lazy="true" fetch="select">
+            <key>
+                <column name="BACK_END_RULE_TYPE_NAME" length="64" not-null="true" />
+            </key>
+            <many-to-many entity-name="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator">
+                <column name="OPERATOR_NAME" length="64" not-null="true" />
+            </many-to-many>
+        </set>
+    </class>
+</hibernate-mapping>

@@ -2,7 +2,7 @@ package com.r00lerz.businessRuleGenerator.domain;
 
 import java.util.List;
 
-import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
+import com.r00lerz.businessRuleGenerator.domain.datamodel_old.Application;
 
 public class BrgServiceImpl implements BrgService {
 

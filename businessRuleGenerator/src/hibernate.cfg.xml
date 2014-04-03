@@ -24,16 +24,17 @@
 		
 		<!-- Mapping file -->
 
-		<!-- <mapping resource="newlyGenerated/BusinessRule.hbm.xml"/>
-		<mapping resource="newlyGenerated/Application.hbm.xml"/>
-		<mapping resource="newlyGenerated/BackEndruleType.hbm.xml"/>
-		<mapping resource="newlyGenerated/FrontEndRuleType.hbm.xml"/>
-		<mapping resource="newlyGenerated/GeneratedCode.hbm.xml"/>
-		<mapping resource="newlyGenerated/Language.hbm.xml"/>
-		<mapping resource="newlyGenerated/Operator.hbm.xml"/>
-		<mapping resource="newlyGenerated/Value.hbm.xml"/>
-		<mapping resource="newlyGenerated/ValueType.hbm.xml"/>  -->
-		<mapping resource="newlyGenerated/Test.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Application.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BusinessRule.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/FrontEndRuleType.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Generatedcode.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Language.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Operator.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Value.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Valuetype.hbm.xml"/>
+		
+
 		
     </session-factory>
 </hibernate-configuration>

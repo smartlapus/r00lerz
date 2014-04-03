@@ -1,4 +1,4 @@
-package com.r00lerz.businessRuleGenerator.domain.datamodel;
+package com.r00lerz.businessRuleGenerator.domain.datamodel_old;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;

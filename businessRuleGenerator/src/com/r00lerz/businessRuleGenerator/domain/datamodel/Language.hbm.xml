@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated 3-apr-2014 2:03:25 by Hibernate Tools 4.0.0 -->
+<!-- Generated Apr 3, 2014 3:17:38 PM by Hibernate Tools 4.0.0 -->
 <hibernate-mapping>
-    <class name="Language" table="LANGUAGE">
+    <class name="com.r00lerz.businessRuleGenerator.domain.datamodel.Language" table="LANGUAGE">
         <id name="name" type="string">
             <column name="NAME" length="64" />
             <generator class="assigned" />
@@ -12,7 +12,7 @@
             <key>
                 <column name="LANGUAGE_NAME" length="64" not-null="true" />
             </key>
-            <one-to-many class="Generatedcode" />
+            <one-to-many class="com.r00lerz.businessRuleGenerator.domain.datamodel.Generatedcode" />
         </set>
     </class>
 </hibernate-mapping>
