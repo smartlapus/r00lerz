@@ -16,7 +16,7 @@ public class Launcher {
 
 public static void main(String[]args){
 
-		Operator operator = new Operator("aoksd");
+		Operator operator = new Operator("Murk6");
 		
 		
 			
@@ -24,7 +24,6 @@ public static void main(String[]args){
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
 		applySettings(configuration.getProperties());
 		SessionFactory factory = configuration.buildSessionFactory(builder.build());
-		
 		Session s = factory.openSession();
 		Transaction tx = s.beginTransaction();
 		
