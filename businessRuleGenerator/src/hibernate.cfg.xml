@@ -3,7 +3,7 @@
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
 		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory name="default">
+    <session-factory>
         <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
         <property name="hibernate.connection.password">tho7_2013_2a_team4</property>
         <property name="hibernate.connection.url">jdbc:oracle:thin:@ondora01.hu.nl:8521/cursus01.hu.nl</property>
@@ -23,20 +23,18 @@
 		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
 		
 		<!-- Mapping file -->
-		<mapping resource="hibernateMapping/Application.hbm.xml"/>
-		<mapping resource="hibernateMapping/BusinessRule.hbm.xml"/>
-		<mapping resource="hibernateMapping/GeneratedCode.hbm.xml"/>
-		<mapping resource="hibernateMapping/Value.hbm.xml"/>
-		<mapping resource="hibernateMapping/Language.hbm.xml"/>
-		<mapping resource="hibernateMapping/Operator.hbm.xml"/>
-		<mapping resource="hibernateMapping/ValueType.hbm.xml"/>
-		<mapping resource="hibernateMapping/BackEndRuleType.hbm.xml"/>
-		<mapping resource="hibernateMapping/FrontEndRuleType.hbm.xml"/>
+
+		<!-- <mapping resource="newlyGenerated/BusinessRule.hbm.xml"/>
+		<mapping resource="newlyGenerated/Application.hbm.xml"/>
+		<mapping resource="newlyGenerated/BackEndruleType.hbm.xml"/>
+		<mapping resource="newlyGenerated/FrontEndRuleType.hbm.xml"/>
+		<mapping resource="newlyGenerated/GeneratedCode.hbm.xml"/>
+		<mapping resource="newlyGenerated/Language.hbm.xml"/>
+		<mapping resource="newlyGenerated/Operator.hbm.xml"/>
+		<mapping resource="newlyGenerated/Value.hbm.xml"/>
+		<mapping resource="newlyGenerated/ValueType.hbm.xml"/>  -->
+		<mapping resource="newlyGenerated/Test.hbm.xml"/>
 		
-		
-		
-		
-			
     </session-factory>
 </hibernate-configuration>
 

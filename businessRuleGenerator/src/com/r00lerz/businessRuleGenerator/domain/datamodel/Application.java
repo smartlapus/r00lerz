@@ -7,11 +7,14 @@ import java.util.Map;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
+
+
 
 public class Application {
 	
@@ -20,7 +23,7 @@ public class Application {
 	private String brgNaam;
 	private String appNaam;
 	
-	private List businessRules;
+	private List<BusinessRule> businessRules;
 	private CodeGenerator codeGenerator;
 	private TargetConnection targetConnection;
 	
@@ -63,24 +66,31 @@ public class Application {
 		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
 		Application app = new Application();
 		app.businessRules.add(br);
-		
+		System.out.println(app);
 		//TODO::Some code to persist the rule here.
 		
+		Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
+		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
+		applySettings(configuration.getProperties());
+		SessionFactory factory = configuration.buildSessionFactory(builder.build());
 		
-		Configuration cfg = new Configuration();
-		cfg.configure("hibernate.cfg.xml"); //:: What configuration file are you using.
-	
-		SessionFactory session_factory = cfg.buildSessionFactory();
-		Session session = session_factory.openSession();
-		Transaction transaction = session.beginTransaction();
+		Session s = factory.openSession();
+		Transaction tx = s.beginTransaction();
 		
+		s.save(app);  //	This would save the object in session
+		s.flush();  	//SQL Query is generated
+		tx.commit();	//Commits the transaction
+		s.close();		//Session is closed
 		
-		session.save(br);  	//This would save the object in session
-		session.flush();  	//SQL Query is generated
-		transaction.commit();	//Commits the transaction
-		session.close();		//Session is closed
-		
-		
-		System.out.println(br);
 	}
+	
+	public String toString(){
+		String s = "";
+		for(BusinessRule br : businessRules){
+			s += br;
+		}
+		return s;
+
+	}
+	
 }
