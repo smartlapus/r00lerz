@@ -1,6 +1,5 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -11,8 +10,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.service.ServiceRegistry;
+import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
@@ -56,6 +56,38 @@ public class Application {
 				ruleString, lhsValue, operator, rhsValues,
 				generationResult.get("ruleType"),
 				generationResult.get("generatedCode"));
+		
+		SessionFactory ourSessionFactory;
+	    ServiceRegistry serviceRegistry;
+		SessionFactory factory;
+		try {
+			
+			Configuration configuration = new Configuration();
+	        configuration.configure();
+	        serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+			factory = new Configuration().configure().buildSessionFactory();
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+		
+		Session session = factory.openSession();	
+		Transaction tx = null;
+		try{
+			
+			tx = session.beginTransaction();
+			Application app = (Application) session.get(Application.class, 1);
+			
+			app.getBusinessRules().add(generatedRule);
+			session.update(app);
+			session.flush(); // SQL Query is generated
+			tx.commit();
+		}catch (HibernateException e) {
+			if (tx!=null) tx.rollback();
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
 
 		return generatedRule.toString();
 	}
