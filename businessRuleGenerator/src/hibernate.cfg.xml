@@ -31,6 +31,7 @@
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/FrontEndRuleType.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Language.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/GeneratedCode.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml"/>
 		
 
 		
