@@ -2,12 +2,17 @@ package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 public class Value {
 
+	private int id;
 	private String value;
 	private ValueType type;
 
+	public Value(){}
+	
 	public Value(String valueString) {
 		this.value = valueString;
-		// TODO: Something to set the valueType;
+		this.type = ValueType.retrieveTypeByName("Static value");
+		System.out.println(value + " " + type);
+		// TODO: A way to dynamicly retrieve the value type
 	}
 
 	@Override
@@ -35,9 +40,27 @@ public class Value {
 		return parseAttributeName().substring(0,3).toUpperCase();
 	}
 
-	public static void main(String[]args){
-		Value v = new Value("Entity.Attribute");
-		
-		System.out.println(v.abbreviateEntityName());
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}
+
+	public ValueType getType() {
+		return type;
+	}
+
+	public void setType(ValueType type) {
+		this.type = type;
 	}
 }

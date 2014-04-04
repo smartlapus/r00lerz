@@ -26,6 +26,8 @@
 		<!-- Mapping file -->
 
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Operator.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/ValueType.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Value.hbm.xml"/>
 		<!-- mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Application.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BusinessRule.hbm.xml"/>
