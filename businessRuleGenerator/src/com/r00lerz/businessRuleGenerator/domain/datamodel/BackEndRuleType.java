@@ -1,23 +1,25 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 
 public class BackEndRuleType {
 	private int id;
 	private String name;
+	private Set<Operator> allowedOperators;
 	
-	public BackEndRuleType(){}
+	public BackEndRuleType(){
+		this.allowedOperators = new HashSet<Operator>();
+	}
 	
 	public BackEndRuleType(String name){
+		super();
 		this.name = name;
 	}
 	
@@ -47,5 +49,12 @@ public class BackEndRuleType {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
+
+	public Set<Operator> getAllowedOperators() {
+		return allowedOperators;
+	}
+
+	public void setAllowedOperators(Set<Operator> allowedOperators) {
+		this.allowedOperators = allowedOperators;
+	}
 }
