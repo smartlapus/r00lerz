@@ -19,7 +19,8 @@ import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
 public class Application {
-
+	public static SessionFactory factory;
+	
 	private int id;
 	private String appName;
 	private String appNameAbbreviation;
@@ -57,19 +58,18 @@ public class Application {
 				generationResult.get("ruleType"),
 				generationResult.get("generatedCode"));
 		
-		SessionFactory ourSessionFactory;
-	    ServiceRegistry serviceRegistry;
-		SessionFactory factory;
-		try {
-			
-			Configuration configuration = new Configuration();
-	        configuration.configure();
-	        serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-			factory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Failed to create sessionFactory object." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
+//		SessionFactory ourSessionFactory;
+//	    ServiceRegistry serviceRegistry;
+//		try {
+//			
+//			Configuration configuration = new Configuration();
+//	        configuration.configure();
+//	        serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
+//			factory = new Configuration().configure().buildSessionFactory();
+//		} catch (Throwable ex) {
+//			System.err.println("Failed to create sessionFactory object." + ex);
+//			throw new ExceptionInInitializerError(ex);
+//		}
 		
 		Session session = factory.openSession();	
 		Transaction tx = null;
