@@ -17,7 +17,7 @@ public class BrgServiceImpl implements BrgService {
 	}
 	
 	private BrgServiceImpl(){
-		application = Application.retrieveApplicationByName("ApplicationNameHere");
+		application = (Application) HibernateUtil.getSession().get(Application.class, 1);
 	};
 
 	@Override

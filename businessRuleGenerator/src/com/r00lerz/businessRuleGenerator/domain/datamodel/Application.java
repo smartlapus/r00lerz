@@ -11,15 +11,13 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
-import org.hibernate.service.ServiceRegistryBuilder;
 
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
+import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
 public class Application {
-	public static SessionFactory factory;
 	
 	private int id;
 	private String appName;
@@ -58,37 +56,10 @@ public class Application {
 				generationResult.get("ruleType"),
 				generationResult.get("generatedCode"));
 		
-//		SessionFactory ourSessionFactory;
-//	    ServiceRegistry serviceRegistry;
-//		try {
-//			
-//			Configuration configuration = new Configuration();
-//	        configuration.configure();
-//	        serviceRegistry = new ServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
-//			factory = new Configuration().configure().buildSessionFactory();
-//		} catch (Throwable ex) {
-//			System.err.println("Failed to create sessionFactory object." + ex);
-//			throw new ExceptionInInitializerError(ex);
-//		}
-		
-		Session session = factory.openSession();	
-		Transaction tx = null;
-		try{
-			
-			tx = session.beginTransaction();
-			Application app = (Application) session.get(Application.class, 1);
-			
-			app.getBusinessRules().add(generatedRule);
-			session.update(app);
-			session.flush(); // SQL Query is generated
-			tx.commit();
-		}catch (HibernateException e) {
-			if (tx!=null) tx.rollback();
-			e.printStackTrace();
-		}finally {
-			session.close();
-		}
-
+		Session session = HibernateUtil.getSession();
+		this.getBusinessRules().add(generatedRule);
+		session.update(this);
+		session.flush(); // SQL Query is generated
 		return generatedRule.toString();
 	}
 
