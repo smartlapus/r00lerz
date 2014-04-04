@@ -10,11 +10,11 @@ public class GeneratedCode implements Serializable{
 	
 	public GeneratedCode(){}
 	
-	public GeneratedCode(String generatedCode, String language) {
+	public GeneratedCode(String generatedCode, String businessRuleName) {
 		//TODO:: add the name to the generated code
 		//TODO:: set the language of the generated code
 		this.generatedCode = generatedCode;
-		this.language = Language.retrieveLanguageByName(language);
+		this.language = Language.retrieveLanguageByName("PL/SQL");
 	}
 	
 	@Override

@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2014 3:03:14 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.r00lerz.businessRuleGenerator.domain.datamodel.BusinessRule" table="BRG_BUSINESSRULE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="name" type="java.lang.String">
+            <column name="NAME" />
+        </property>
+        <property name="description" type="java.lang.String">
+            <column name="DESCRIPTION" />
+        </property>
+        
+        <one-to-one name="condition" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BusinessRule"></one-to-one>
+        
+        <many-to-one name="lhsValue" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Value" cascade="all" fetch="join">
+            <column name="LHS_VALUE" />
+        </many-to-one>
+        
+        <many-to-one name="operator" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator" cascade="all" fetch="join">
+            <column name="OPERATOR" />
+        </many-to-one>
+        
+        <set name="rhsValues" inverse="false" table="BRG_BUSINESSRULE" cascade="all" lazy="true">
+            <key>
+                <column name="BUSINESSRULE_ID" />
+            </key>
+            <one-to-many class="com.r00lerz.businessRuleGenerator.domain.datamodel.Value"/>
+        </set>
+        
+        <many-to-one name="backEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType" cascade="all" fetch="join">
+            <column name="BACK_END_RULE_TYPE" />
+        </many-to-one>
+        
+        <many-to-one name="frontEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.FrontEndRuleType" cascade="all" fetch="join">
+            <column name="FRONT_END_RULE_TYPE" />
+        </many-to-one>
+        
+        <set name="generatedCode" inverse="false" table="BRG_BUSINESSRULE" cascade="all" lazy="true">
+            <key>
+                <column name="BUSSINESSRULE_ID" />
+            </key>
+            <one-to-many class="com.r00lerz.businessRuleGenerator.domain.datamodel.GeneratedCode"/>
+        </set>
+    </class>
+</hibernate-mapping>

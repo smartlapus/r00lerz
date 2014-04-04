@@ -1,7 +1,9 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class BusinessRule {
 	
@@ -12,11 +14,11 @@ public class BusinessRule {
 	
 	private Value lhsValue;
 	private Operator operator;
-	private List<Value> rhsValues;
+	private Set<Value> rhsValues;
 	
 	private BackEndRuleType backEndRuleType;
 	private FrontEndRuleType frontEndRuleType;
-	private List<GeneratedCode> generatedCode;
+	private Set<GeneratedCode> generatedCode;
 	
 	public BusinessRule(){}
 	
@@ -27,14 +29,14 @@ public class BusinessRule {
 		
 		this.lhsValue = new Value(lhsValue);
 		this.operator = new Operator(operator); //TODO::This should be replaced with a call to the database to get an excisting operator
-		this.rhsValues = new ArrayList<Value>();
+		this.rhsValues = new HashSet<Value>();
 		for (String valueString : rhsValues){
 			this.rhsValues.add(new Value(valueString));
 		}
 		this.backEndRuleType = null; //TODO::This needs to be replaced with some way to get the backendRuleType.
 		this.frontEndRuleType = new FrontEndRuleType(frontEndRuleType);
 		
-		this.generatedCode = new ArrayList<GeneratedCode>();
+		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
 		
 		this.name = this.generateName(appPartRuleName);
@@ -112,11 +114,11 @@ public class BusinessRule {
 		this.operator = operator;
 	}
 
-	public List<Value> getRhsValues() {
+	public Set<Value> getRhsValues() {
 		return rhsValues;
 	}
 
-	public void setRhsValues(List<Value> rhsValues) {
+	public void setRhsValues(Set<Value> rhsValues) {
 		this.rhsValues = rhsValues;
 	}
 
@@ -136,11 +138,11 @@ public class BusinessRule {
 		this.frontEndRuleType = frontEndRuleType;
 	}
 
-	public List<GeneratedCode> getGeneratedCode() {
+	public Set<GeneratedCode> getGeneratedCode() {
 		return generatedCode;
 	}
 
-	public void setGeneratedCode(List<GeneratedCode> generatedCode) {
+	public void setGeneratedCode(Set<GeneratedCode> generatedCode) {
 		this.generatedCode = generatedCode;
 	}
 }

@@ -32,7 +32,8 @@
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Language.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/GeneratedCode.hbm.xml"/>
 		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml"/>
-		
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BusinessRule.hbm.xml"/>
+		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Application.hbm.xml"/>
 
 		
     </session-factory>

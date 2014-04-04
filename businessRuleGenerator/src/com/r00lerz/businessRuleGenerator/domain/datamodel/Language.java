@@ -1,5 +1,6 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.HibernateException;
@@ -9,7 +10,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
-public class Language {
+public class Language implements Serializable {
 	private int id;
 	private String name;
 

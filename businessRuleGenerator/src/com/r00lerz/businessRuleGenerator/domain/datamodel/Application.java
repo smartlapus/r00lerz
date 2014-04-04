@@ -1,8 +1,10 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -22,13 +24,13 @@ public class Application {
 	private String appName;
 	private String appNameAbbreviation;
 	
-	private List<BusinessRule> businessRules;
+	private Set<BusinessRule> businessRules;
 	private CodeGenerator codeGenerator;
 	private TargetConnection targetConnection;
 	
 	public Application(){
 		codeGenerator = new PLSQL_Generator();
-		businessRules = new ArrayList<BusinessRule>();
+		businessRules = new HashSet<BusinessRule>();
 		
 		this.appName = "ApplicationNameHere";
 		this.appNameAbbreviation = "ANH";
@@ -55,32 +57,6 @@ public class Application {
 		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
 		
 		return generatedRule.toString();
-	}
-	
-	public static void main(String[]args){
-
-		
-		ArrayList<String> rhsValues = new ArrayList<String>();
-		rhsValues.add("18");
-		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
-		Application app = new Application();
-		app.businessRules.add(br);
-		System.out.println(app);
-		//TODO::Some code to persist the rule here.
-		
-		Configuration configuration = new Configuration().configure("hibernate.cfg.xml");
-		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder().
-		applySettings(configuration.getProperties());
-		SessionFactory factory = configuration.buildSessionFactory(builder.build());
-		
-		Session s = factory.openSession();
-		Transaction tx = s.beginTransaction();
-		
-		s.save(app);  //	This would save the object in session
-		s.flush();  	//SQL Query is generated
-		tx.commit();	//Commits the transaction
-		s.close();		//Session is closed
-		
 	}
 	
 	public String toString(){
@@ -116,11 +92,12 @@ public class Application {
 		this.appNameAbbreviation = appNameAbbreviation;
 	}
 
-	public List<BusinessRule> getBusinessRules() {
+	public Set<BusinessRule> getBusinessRules() {
 		return businessRules;
 	}
 
-	public void setBusinessRules(List<BusinessRule> businessRules) {
+	public void setBusinessRules(Set<BusinessRule> businessRules) {
 		this.businessRules = businessRules;
 	}
+	
 }
