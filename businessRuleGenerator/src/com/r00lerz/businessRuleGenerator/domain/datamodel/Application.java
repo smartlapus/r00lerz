@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -16,52 +18,87 @@ import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.Targ
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
-
-
 public class Application {
-	
+
 	private int id;
 	private String appName;
 	private String appNameAbbreviation;
-	
+
 	private Set<BusinessRule> businessRules;
 	private CodeGenerator codeGenerator;
 	private TargetConnection targetConnection;
-	
-	public Application(){
+
+	public Application() {
 		codeGenerator = new PLSQL_Generator();
 		businessRules = new HashSet<BusinessRule>();
-		
-		this.appName = "ApplicationNameHere";
-		this.appNameAbbreviation = "ANH";
 	}
-	
-	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath){
+
+	public String generateRule(String lhsValue, String operator,
+			List<String> rhsValues, String realPath) {
 		String ruleString = lhsValue + " ";
-		ruleString+= operator + " ";
-		
-		for (int i = 0; i < rhsValues.size(); i++){
-			ruleString+= rhsValues.get(i);
-			
-			if ((rhsValues.size() == 2) && i == 0){
+		ruleString += operator + " ";
+
+		for (int i = 0; i < rhsValues.size(); i++) {
+			ruleString += rhsValues.get(i);
+
+			if ((rhsValues.size() == 2) && i == 0) {
 				ruleString += " and ";
-			}
-			else if (rhsValues.size() > 2){
-				//code to generate list here
+			} else if (rhsValues.size() > 2) {
+				// code to generate list here
 			}
 		}
-		
+
 		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
-		
-		Map<String,String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
-		
+
+		Map<String, String> generationResult = codeGenerator.generateRule(
+				ruleString, realPath);
+		BusinessRule generatedRule = new BusinessRule(appPartRuleName,
+				ruleString, lhsValue, operator, rhsValues,
+				generationResult.get("ruleType"),
+				generationResult.get("generatedCode"));
+
 		return generatedRule.toString();
 	}
-	
-	public String toString(){
-		String s = "";
-		for(BusinessRule br : businessRules){
+
+	public static Application retrieveApplicationByName(String appName) {
+
+		// TODO::replace this block with a call to a method that returns the
+		// sessionfactory
+		SessionFactory factory;
+		List<Application> result = null;
+		try {
+			factory = new Configuration().configure().buildSessionFactory();
+		} catch (Throwable ex) {
+			System.err.println("Failed to create sessionFactory object." + ex);
+			throw new ExceptionInInitializerError(ex);
+		}
+
+		Session session = factory.openSession();
+		Transaction tx = null;
+
+		try {
+			tx = session.beginTransaction();
+			
+			Query query = session
+					.createQuery("FROM Application WHERE appName = :appName");
+			query.setParameter("appName", appName);
+
+			result = query.list();
+
+			tx.commit();
+		} catch (HibernateException e) {
+			if (tx != null)
+				tx.rollback();
+			e.printStackTrace();
+		} finally {
+			session.close();
+		}
+		return result.get(0);
+	}
+
+	public String toString() {
+		String s = "Aplication: " + appName + id + "\n";
+		for (BusinessRule br : businessRules) {
 			s += br;
 		}
 		return s;
@@ -99,5 +136,5 @@ public class Application {
 	public void setBusinessRules(Set<BusinessRule> businessRules) {
 		this.businessRules = businessRules;
 	}
-	
+
 }

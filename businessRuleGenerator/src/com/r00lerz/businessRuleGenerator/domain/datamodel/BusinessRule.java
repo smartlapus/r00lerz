@@ -57,7 +57,7 @@ public class BusinessRule {
 				+ "id= " + id+"\n"
 				+ "name= " + name+"\n" 
 				+ "description= " + description + "\n" 
-				+ "condition= " + condition + "\n" 
+//				+ "condition= " + condition + "\n" 
 				+ "lhsValue= "+ lhsValue + "\n" 
 				+ "operator= " + operator + "\n" 
 				+ "rhsValues= " 	+ rhsValues + "\n" 

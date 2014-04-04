@@ -17,7 +17,7 @@ public class BrgServiceImpl implements BrgService {
 	}
 	
 	private BrgServiceImpl(){
-		application = new Application();
+		application = Application.retrieveApplicationByName("ApplicationNameHere");
 	};
 
 	@Override
