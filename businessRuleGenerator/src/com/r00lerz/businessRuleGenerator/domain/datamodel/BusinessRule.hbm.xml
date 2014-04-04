@@ -36,7 +36,7 @@
             <column name="BACK_END_RULE_TYPE" />
         </many-to-one>
         
-        <many-to-one name="frontEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.FrontEndRuleType" cascade="all" fetch="join">
+        <many-to-one name="frontEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.FrontEndRuleType" cascade="merge" fetch="join">
             <column name="FRONT_END_RULE_TYPE" />
         </many-to-one>
         

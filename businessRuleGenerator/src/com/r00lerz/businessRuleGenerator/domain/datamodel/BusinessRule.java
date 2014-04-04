@@ -34,7 +34,7 @@ public class BusinessRule {
 			this.rhsValues.add(new Value(valueString));
 		}
 		this.backEndRuleType = null; //TODO::This needs to be replaced with some way to get the backendRuleType.
-		this.frontEndRuleType = new FrontEndRuleType(frontEndRuleType);
+		this.frontEndRuleType = FrontEndRuleType.retrieveTypeByName(frontEndRuleType);
 		
 		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
