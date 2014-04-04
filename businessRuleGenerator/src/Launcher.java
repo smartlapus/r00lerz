@@ -32,7 +32,7 @@ public class Launcher {
 
 		ArrayList<String> rhsValues = new ArrayList<String>();
 		rhsValues.add("18");
-		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be bigger than 18", "person.age", "must be bigger than", rhsValues, "Attribute compare rule", "some generated code here");
+		BusinessRule br = new BusinessRule("bla_bla_bla_01", "person.age must be equal to 18", "person.age", "must be equal to", rhsValues, "Attribute compare rule", "some generated code here");
 	
 		
 		

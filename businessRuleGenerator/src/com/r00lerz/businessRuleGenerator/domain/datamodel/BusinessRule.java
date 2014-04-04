@@ -33,7 +33,7 @@ public class BusinessRule {
 		for (String valueString : rhsValues){
 			this.rhsValues.add(new Value(valueString));
 		}
-		this.backEndRuleType = null; //TODO::This needs to be replaced with some way to get the backendRuleType.
+		this.backEndRuleType = BackEndRuleType.retrieveTypeByName("Compare Rule");
 		this.frontEndRuleType = FrontEndRuleType.retrieveTypeByName(frontEndRuleType);
 		
 		this.generatedCode = new HashSet<GeneratedCode>();

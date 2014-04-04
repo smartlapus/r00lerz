@@ -32,7 +32,7 @@
             <one-to-many class="com.r00lerz.businessRuleGenerator.domain.datamodel.Value"/>
         </set>
         
-        <many-to-one name="backEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType" cascade="all" fetch="join">
+        <many-to-one name="backEndRuleType" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType" cascade="merge" fetch="join">
             <column name="BACK_END_RULE_TYPE" />
         </many-to-one>
         
