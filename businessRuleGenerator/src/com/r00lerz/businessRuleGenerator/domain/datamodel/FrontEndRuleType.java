@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
+
 public class FrontEndRuleType {
 	private int id;
 	private String name;
@@ -44,37 +46,11 @@ public class FrontEndRuleType {
 	}
 
 	public static FrontEndRuleType retrieveTypeByName(String name) {
+		Session session = HibernateUtil.getSession();
 
-		// TODO::replace this block with a call to a method that returns the
-		// sessionfactory
-		SessionFactory factory;
-		List<FrontEndRuleType> result = null;
-		try {
-			factory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Failed to create sessionFactory object." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
-
-		Session session = factory.openSession();
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			Query query = session
-					.createQuery("FROM FrontEndRuleType WHERE name = :name");
-			query.setParameter("name", name);
-
-			result = query.list();
-
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
+		Query query = session.createQuery("FROM FrontEndRuleType WHERE name = :name");
+		query.setParameter("name", name);
+		List<FrontEndRuleType> result = query.list();
 		return result.get(0);
 	}
 

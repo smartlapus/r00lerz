@@ -63,42 +63,6 @@ public class Application {
 		return generatedRule.toString();
 	}
 
-	public static Application retrieveApplicationByName(String appName) {
-
-		// TODO::replace this block with a call to a method that returns the
-		// sessionfactory
-		SessionFactory factory;
-		List<Application> result = null;
-		try {
-			factory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Failed to create sessionFactory object." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
-
-		Session session = factory.openSession();
-		Transaction tx = null;
-
-		try {
-			tx = session.beginTransaction();
-			
-			Query query = session
-					.createQuery("FROM Application WHERE appName = :appName");
-			query.setParameter("appName", appName);
-
-			result = query.list();
-
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
-		return result.get(0);
-	}
-
 	public String toString() {
 		String s = "Aplication: " + appName + id + "\n";
 		for (BusinessRule br : businessRules) {
@@ -139,5 +103,4 @@ public class Application {
 	public void setBusinessRules(Set<BusinessRule> businessRules) {
 		this.businessRules = businessRules;
 	}
-
 }

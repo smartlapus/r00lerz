@@ -9,6 +9,8 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 
+import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
+
 public class BackEndRuleType {
 	private int id;
 	private String name;
@@ -20,37 +22,13 @@ public class BackEndRuleType {
 	}
 	
 	public static BackEndRuleType retrieveTypeByName(String name) {
-
-		// TODO::replace this block with a call to a method that returns the
-		// sessionfactory
-		SessionFactory factory;
 		List<BackEndRuleType> result = null;
-		try {
-			factory = new Configuration().configure().buildSessionFactory();
-		} catch (Throwable ex) {
-			System.err.println("Failed to create sessionFactory object." + ex);
-			throw new ExceptionInInitializerError(ex);
-		}
+		Session session = HibernateUtil.getSession();
 
-		Session session = factory.openSession();
-		Transaction tx = null;
+		Query query = session.createQuery("FROM BackEndRuleType WHERE name = :name");
+		query.setParameter("name", name);
 
-		try {
-			tx = session.beginTransaction();
-			Query query = session
-					.createQuery("FROM BackEndRuleType WHERE name = :name");
-			query.setParameter("name", name);
-
-			result = query.list();
-
-			tx.commit();
-		} catch (HibernateException e) {
-			if (tx != null)
-				tx.rollback();
-			e.printStackTrace();
-		} finally {
-			session.close();
-		}
+		result = query.list();
 		return result.get(0);
 	}
 	
