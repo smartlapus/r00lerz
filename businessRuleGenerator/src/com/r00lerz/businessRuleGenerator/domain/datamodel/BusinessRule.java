@@ -28,7 +28,7 @@ public class BusinessRule {
 		this.description = description;
 		
 		this.lhsValue = new Value(lhsValue);
-		this.operator = new Operator(operator); //TODO::This should be replaced with a call to the database to get an excisting operator
+		this.operator = Operator.retrieveOperatorByName(operator);
 		this.rhsValues = new HashSet<Value>();
 		for (String valueString : rhsValues){
 			this.rhsValues.add(new Value(valueString));

@@ -21,7 +21,7 @@
             <column name="LHS_VALUE" />
         </many-to-one>
         
-        <many-to-one name="operator" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator" cascade="all" fetch="join">
+        <many-to-one name="operator" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator" cascade="merge" fetch="join">
             <column name="OPERATOR" />
         </many-to-one>
         
