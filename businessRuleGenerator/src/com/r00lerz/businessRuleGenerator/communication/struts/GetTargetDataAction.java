@@ -1,15 +1,7 @@
 package com.r00lerz.businessRuleGenerator.communication.struts;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.Map;
-
-import oracle.jdbc.pool.OracleDataSource;
 
 import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
