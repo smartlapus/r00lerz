@@ -18,6 +18,8 @@ public class BusinessRule {
 	private FrontEndRuleType frontEndRuleType;
 	private List<GeneratedCode> generatedCode;
 	
+	public BusinessRule(){}
+	
 	public BusinessRule(String appPartRuleName, String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
@@ -61,7 +63,84 @@ public class BusinessRule {
 				+ "frontEndRuleType= " + frontEndRuleType + "\n" 
 				+ "generatedCode= " + generatedCode;
 	}
-	
-	
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public BusinessRule getCondition() {
+		return condition;
+	}
+
+	public void setCondition(BusinessRule condition) {
+		this.condition = condition;
+	}
+
+	public Value getLhsValue() {
+		return lhsValue;
+	}
+
+	public void setLhsValue(Value lhsValue) {
+		this.lhsValue = lhsValue;
+	}
+
+	public Operator getOperator() {
+		return operator;
+	}
+
+	public void setOperator(Operator operator) {
+		this.operator = operator;
+	}
+
+	public List<Value> getRhsValues() {
+		return rhsValues;
+	}
+
+	public void setRhsValues(List<Value> rhsValues) {
+		this.rhsValues = rhsValues;
+	}
+
+	public BackEndRuleType getBackEndRuleType() {
+		return backEndRuleType;
+	}
+
+	public void setBackEndRuleType(BackEndRuleType backEndRuleType) {
+		this.backEndRuleType = backEndRuleType;
+	}
+
+	public FrontEndRuleType getFrontEndRuleType() {
+		return frontEndRuleType;
+	}
+
+	public void setFrontEndRuleType(FrontEndRuleType frontEndRuleType) {
+		this.frontEndRuleType = frontEndRuleType;
+	}
+
+	public List<GeneratedCode> getGeneratedCode() {
+		return generatedCode;
+	}
+
+	public void setGeneratedCode(List<GeneratedCode> generatedCode) {
+		this.generatedCode = generatedCode;
+	}
 }

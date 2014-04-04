@@ -18,8 +18,7 @@ import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
 public class Application {
 	
-	private static Application applicationInstance;
-	
+	private int id;
 	private String appName;
 	private String appNameAbbreviation;
 	
@@ -92,5 +91,36 @@ public class Application {
 		return s;
 
 	}
-	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getAppName() {
+		return appName;
+	}
+
+	public void setAppName(String appName) {
+		this.appName = appName;
+	}
+
+	public String getAppNameAbbreviation() {
+		return appNameAbbreviation;
+	}
+
+	public void setAppNameAbbreviation(String appNameAbbreviation) {
+		this.appNameAbbreviation = appNameAbbreviation;
+	}
+
+	public List<BusinessRule> getBusinessRules() {
+		return businessRules;
+	}
+
+	public void setBusinessRules(List<BusinessRule> businessRules) {
+		this.businessRules = businessRules;
+	}
 }
