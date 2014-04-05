@@ -3,6 +3,7 @@ package com.r00lerz.businessRuleGenerator.domain;
 import java.util.List;
 
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
 
 public class BrgServiceImpl implements BrgService {
 
@@ -17,7 +18,7 @@ public class BrgServiceImpl implements BrgService {
 	}
 	
 	private BrgServiceImpl(){
-		application = (Application) HibernateUtil.getSession().get(Application.class, 1);
+		application = new ApplicationDAO().getApplicationById(1);
 	};
 
 	@Override
