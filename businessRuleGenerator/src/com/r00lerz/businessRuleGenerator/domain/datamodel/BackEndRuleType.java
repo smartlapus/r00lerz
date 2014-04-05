@@ -46,4 +46,9 @@ public class BackEndRuleType {
 	public void setAllowedOperators(Set<Operator> allowedOperators) {
 		this.allowedOperators = allowedOperators;
 	}
+	
+	public String toString(){
+		return "BackEndRuleType toString: " + this.name + " " + this.allowedOperators;
+	}
+	
 }

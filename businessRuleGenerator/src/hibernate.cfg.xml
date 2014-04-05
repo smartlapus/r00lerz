@@ -1,41 +1,58 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
 		"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
-		"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+		"http://hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
-    <session-factory>
-        <property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
-        <property name="hibernate.connection.password">tho7_2013_2a_team4</property>
-        <property name="hibernate.connection.url">jdbc:oracle:thin:@ondora01.hu.nl:8521/cursus01.hu.nl</property>
-        <property name="hibernate.connection.username">tho7_2013_2a_team4</property>
-        <property name="hibernate.default_schema">THO7_2013_2A_TEAM4</property>
-        <property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
-        
-        <!-- You may want to disable the auto-commit to prevent issues with "out of synch commits"  -->
+	<session-factory>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<property name="hibernate.connection.password">tho7_2013_2a_team4</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@ondora01.hu.nl:8521/cursus01.hu.nl</property>
+		<property name="hibernate.connection.username">tho7_2013_2a_team4</property>
+		<property name="hibernate.default_schema">THO7_2013_2A_TEAM4</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.Oracle10gDialect</property>
+
+		<!-- You may want to disable the auto-commit to prevent issues with "out 
+			of synch commits" -->
 		<property name="hibernate.connection.autocommit">false</property>
-		
+
 		<!-- Console logging SQL Query generated when running the program -->
 		<property name="hibernate.show_sql">true</property>
 		<property name="hibernate.format_sql">true</property>
 		<property name="hibernate.use_sql_comments">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
 		<property name="hibernate.current_session_context_class">org.hibernate.context.internal.ThreadLocalSessionContext</property>
-		
+
+		<!-- c3p0 config http://www.hibernate.org/214.html -->
+		<property name="hibernate.c3p0.min_size">5</property>
+		<property name="hibernate.c3p0.max_size">20</property>
+		<property name="hibernate.c3p0.timeout">300</property>
+		<property name="hibernate.c3p0.max_statements">50</property>
+		<property name="hibernate.c3p0.idle_test_period">3000</property>
+
 		<!-- For the JDBC Transaction -->
 		<property name="hibernate.transaction.factory_class">org.hibernate.transaction.JDBCTransactionFactory</property>
-		
+
 		<!-- Mapping file -->
 
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Operator.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/ValueType.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Value.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/FrontEndRuleType.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Language.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/GeneratedCode.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BusinessRule.hbm.xml"/>
-		<mapping resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Application.hbm.xml"/>
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Operator.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/ValueType.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Value.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/FrontEndRuleType.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Language.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/GeneratedCode.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BackEndRuleType.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/BusinessRule.hbm.xml" />
+		<mapping
+			resource="com/r00lerz/businessRuleGenerator/domain/datamodel/Application.hbm.xml" />
 
-		
-    </session-factory>
+
+	</session-factory>
 </hibernate-configuration>
