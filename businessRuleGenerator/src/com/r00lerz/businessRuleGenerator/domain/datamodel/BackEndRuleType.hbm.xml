@@ -15,7 +15,7 @@
 		</property>
 		<set name="allowedOperators" cascade="save-update" table="BRG_ALLOWED_OPERATORS">
 			<key column="BACK_END_RULE_TYPE_ID" />
-			<many-to-many column="OPERATOR_ID" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType" />
+			<many-to-many column="OPERATOR_ID" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator" />
 		</set>
 	</class>
 </hibernate-mapping>
