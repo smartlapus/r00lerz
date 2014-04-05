@@ -22,15 +22,6 @@ public class Operator {
 		this.name = name;
 	}
 	
-	public static Operator retrieveOperatorByName(String name) {
-		Session session = HibernateUtil.getSession();
-
-		Query query = session.createQuery("FROM Operator WHERE name = :name");
-		query.setParameter("name", name);
-		List<Operator> result = query.list();
-		return result.get(0);
-	}
-
 	public int getId() {
 		return id;
 	}

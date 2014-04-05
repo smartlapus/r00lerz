@@ -45,15 +45,6 @@ public class FrontEndRuleType {
 		}
 	}
 
-	public static FrontEndRuleType retrieveTypeByName(String name) {
-		Session session = HibernateUtil.getSession();
-
-		Query query = session.createQuery("FROM FrontEndRuleType WHERE name = :name");
-		query.setParameter("name", name);
-		List<FrontEndRuleType> result = query.list();
-		return result.get(0);
-	}
-
 	public String getAbbreviation() {
 		return abbreviation;
 	}

@@ -1,9 +1,12 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BackEndRuleTypeDAO;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.FrontEndRuleTypeDAO;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.OperatorDAO;
 
 public class BusinessRule {
 	
@@ -28,13 +31,13 @@ public class BusinessRule {
 		this.description = description;
 		
 		this.lhsValue = new Value(lhsValue);
-		this.operator = Operator.retrieveOperatorByName(operator);
+		this.operator = new OperatorDAO().retrieveOperatorByName(operator);
 		this.rhsValues = new HashSet<Value>();
 		for (String valueString : rhsValues){
 			this.rhsValues.add(new Value(valueString));
 		}
-		this.backEndRuleType = BackEndRuleType.retrieveTypeByName("Compare Rule");
-		this.frontEndRuleType = FrontEndRuleType.retrieveTypeByName(frontEndRuleType);
+		this.backEndRuleType = new BackEndRuleTypeDAO().retrieveTypeByName("Compare Rule");
+		this.frontEndRuleType = new FrontEndRuleTypeDAO().retrieveTypeByName(frontEndRuleType);
 		
 		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));

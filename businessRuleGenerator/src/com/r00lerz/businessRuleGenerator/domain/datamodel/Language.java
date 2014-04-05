@@ -23,15 +23,6 @@ public class Language implements Serializable {
 		this.name = name;
 	}
 
-	public static Language retrieveLanguageByName(String name) {
-		Session session = HibernateUtil.getSession();
-
-		Query query = session.createQuery("FROM Language WHERE name = :name");
-		query.setParameter("name", name);
-		List<Language> result = query.list();
-		return result.get(0);
-	}
-
 	public int getId() {
 		return id;
 	}

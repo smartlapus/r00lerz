@@ -6,6 +6,8 @@ import java.util.Map;
 
 public interface TargetConnection {
 	public void persist();
+
 	public Map<String, ArrayList<String>> getTargetData() throws SQLException;
+
 	public void close() throws SQLException;
 }

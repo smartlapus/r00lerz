@@ -23,17 +23,6 @@ public class BackEndRuleType {
 		this.name = name;
 	}
 	
-	public static BackEndRuleType retrieveTypeByName(String name) {
-		List<BackEndRuleType> result = null;
-		Session session = HibernateUtil.getSession();
-
-		Query query = session.createQuery("FROM BackEndRuleType WHERE name = :name");
-		query.setParameter("name", name);
-
-		result = query.list();
-		return result.get(0);
-	}
-	
 	public int getId() {
 		return id;
 	}

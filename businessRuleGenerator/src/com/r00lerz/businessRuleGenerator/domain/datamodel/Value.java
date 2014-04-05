@@ -1,5 +1,7 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ValueTypeDAO;
+
 public class Value {
 
 	private int id;
@@ -10,7 +12,7 @@ public class Value {
 	
 	public Value(String valueString) {
 		this.value = valueString;
-		this.type = ValueType.retrieveTypeByName("Static value");
+		this.type = new ValueTypeDAO().retrieveTypeByName("Static value");
 		System.out.println(value + " " + type);
 		// TODO: A way to dynamicly retrieve the value type
 	}

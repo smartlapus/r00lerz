@@ -12,10 +12,10 @@ import java.util.Map;
 import oracle.jdbc.pool.OracleDataSource;
 
 public class OracleTargetConnection implements TargetConnection {
-	
+
 	Connection connection = null;
 	PreparedStatement statement = null;
-	
+
 	public OracleTargetConnection() throws SQLException {
 		OracleDataSource ds = new OracleDataSource();
 
@@ -30,29 +30,28 @@ public class OracleTargetConnection implements TargetConnection {
 
 		connection = ds.getConnection();
 	}
-	
-	
+
 	@Override
 	public void persist() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public Map<String, ArrayList<String>> getTargetData() throws SQLException {
-		
+
 		HashMap<String, ArrayList<String>> target = new HashMap<String, ArrayList<String>>();
 		statement = connection.prepareStatement("select * from tables_columns");
-		
+
 		ResultSet results = statement.executeQuery();
-		
-		while(results.next()) {
+
+		while (results.next()) {
 			String table = results.getString("table_name");
 			String column = results.getString("column_name");
-			
-			if(target.containsKey(table)) {
+
+			if (target.containsKey(table)) {
 				ArrayList<String> columns = target.get(table);
-				if(!columns.contains(column)) {
+				if (!columns.contains(column)) {
 					columns.add(column);
 				}
 			} else {
@@ -60,10 +59,10 @@ public class OracleTargetConnection implements TargetConnection {
 				target.put(table, columns);
 			}
 		}
-		
+
 		return target;
 	}
-	
+
 	public void close() throws SQLException {
 		statement.close();
 		connection.close();

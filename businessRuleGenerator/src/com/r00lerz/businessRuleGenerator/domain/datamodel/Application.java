@@ -18,7 +18,7 @@ import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 
 public class Application {
-	
+
 	private int id;
 	private String appName;
 	private String appNameAbbreviation;
@@ -32,8 +32,7 @@ public class Application {
 		businessRules = new HashSet<BusinessRule>();
 	}
 
-	public String generateRule(String lhsValue, String operator,
-			List<String> rhsValues, String realPath) {
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
 		String ruleString = lhsValue + " ";
 		ruleString += operator + " ";
 
@@ -49,13 +48,9 @@ public class Application {
 
 		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
 
-		Map<String, String> generationResult = codeGenerator.generateRule(
-				ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(appPartRuleName,
-				ruleString, lhsValue, operator, rhsValues,
-				generationResult.get("ruleType"),
-				generationResult.get("generatedCode"));
-		
+		Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
+		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+
 		Session session = HibernateUtil.getSession();
 		this.getBusinessRules().add(generatedRule);
 		session.update(this);

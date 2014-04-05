@@ -21,15 +21,6 @@ public class ValueType {
 		this.name = name;
 	}
 	
-	public static ValueType retrieveTypeByName(String name){
-		
-		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery("FROM ValueType WHERE name = :name");
-		query.setParameter("name", name);
-		List<ValueType> result = query.list();
-		return result.get(0);
-	}
-	
 	public int getId() {
 		return id;
 	}
