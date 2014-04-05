@@ -25,6 +25,7 @@ public class Value {
 	protected String parseEntityName(){
 		//TODO::Check if valueType = dynamic
 		String entity = value.split("\\.")[0];
+		entity = entity.replace("DEMO_", ""); // Just removing the DEMO_ part for now.
 		return entity;
 	}
 	
@@ -34,8 +35,12 @@ public class Value {
 		return attribute;
 	}
 	
-	protected String abbreviateEntityName(){
-		return parseEntityName().substring(0,3).toUpperCase();
+	public String abbreviateEntityName(){
+		String abbr = parseEntityName().substring(0,3).toUpperCase();
+		
+		
+		
+		return abbr;
 	}
 	
 	protected String abbreviateAttributeName(){
