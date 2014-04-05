@@ -69,8 +69,13 @@ public class HibernateSessionRequestFilter implements Filter {
         log.debug("Initializing filter...");  
         log.debug("Obtaining SessionFactory from static HibernateUtil singleton");  
         sf = HibernateUtil.getSessionFactory();  
+        
+      
     }  
   
-    public void destroy() {}
+    public void destroy() {
+    	  LogFactory.releaseAll();
+    	
+    }
   
 }  
