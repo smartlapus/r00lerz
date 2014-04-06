@@ -2,7 +2,6 @@ package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
 import java.io.Serializable;
 
-import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BackEndRuleTypeDAO;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.LanguageDAO;
 
 public class GeneratedCode implements Serializable{
@@ -14,9 +13,8 @@ public class GeneratedCode implements Serializable{
 	public GeneratedCode(){}
 	
 	public GeneratedCode(String generatedCode, String businessRuleName) {
-		//TODO:: add the name to the generated code
-		//TODO:: set the language of the generated code
-		this.generatedCode = generatedCode;
+		this.generatedCode = "--Evaluates businessrule: " + businessRuleName + "\n";
+		this.generatedCode += generatedCode;
 		this.language = new LanguageDAO().retrieveLanguageByName("PL/SQL");
 	}
 	
