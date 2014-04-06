@@ -15,4 +15,9 @@ public class ApplicationDAO {
 	public Application getApplicationById(int itemId) {
 		return (Application) currentSession.get(Application.class, itemId);
 	}
+	
+	public void updateApplication(Application application){
+		currentSession.update(application);
+		currentSession.flush();
+	}
 }

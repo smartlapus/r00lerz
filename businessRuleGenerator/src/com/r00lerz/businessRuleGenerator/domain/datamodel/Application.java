@@ -5,17 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
 
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
 
 public class Application {
 
@@ -33,8 +29,20 @@ public class Application {
 	}
 
 	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
-		String ruleString = lhsValue + " ";
-		ruleString += operator + " ";
+		String ruleString = generateRuleSting(lhsValue, operator, rhsValues);
+		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
+
+		Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
+		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		
+		this.getBusinessRules().add(generatedRule);
+		new ApplicationDAO().updateApplication(this);
+		
+		return generatedRule.toString();
+	}
+
+	private String generateRuleSting(String lhsValue, String operator, List<String> rhsValues) {
+		String ruleString = lhsValue + " " + operator + " ";
 
 		for (int i = 0; i < rhsValues.size(); i++) {
 			ruleString += rhsValues.get(i);
@@ -45,19 +53,9 @@ public class Application {
 				// code to generate list here
 			}
 		}
-
-		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
-
-		Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
-
-		Session session = HibernateUtil.getSession();
-		this.getBusinessRules().add(generatedRule);
-		session.update(this);
-		session.flush(); // SQL Query is generated
-		return generatedRule.toString();
+		return ruleString;
 	}
-
+	
 	public String toString() {
 		String s = "Aplication: " + appName + id + "\n";
 		for (BusinessRule br : businessRules) {
