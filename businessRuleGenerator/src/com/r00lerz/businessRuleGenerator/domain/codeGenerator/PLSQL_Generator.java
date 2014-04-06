@@ -43,25 +43,6 @@ public class PLSQL_Generator implements CodeGenerator {
 			e1.printStackTrace();
 		}
 		
-//		Process proc;
-//		try {
-//			proc = Runtime.getRuntime().exec(
-//					"java -jar \"" + realPath + "WEB-INF/lib/ruleDefLang.jar\" " + realPath+"src-gen/input.rdef " + realPath);
-//			InputStream in = proc.getInputStream();
-//			InputStream err = proc.getErrorStream();
-//			InputStreamReader isr = new InputStreamReader(err);
-//			BufferedReader br = new BufferedReader(isr);
-//			String line = null;
-//			System.out.println("<ERROR OUTPUT>");
-//			while ((line = br.readLine()) != null)
-//				System.out.println(line);
-//			System.out.println("</ERROR OUTPUT>");
-//			int exitVal = proc.waitFor();
-//			in.close();
-//			err.close();
-//		} catch (Throwable t) {
-//			t.printStackTrace();
-//		}
 		String inputPath = realPath + "src-gen"+File.separator+"input.rdef";
 		String outputPath = realPath;
 		generator.runGenerator(inputPath, outputPath);
@@ -74,6 +55,14 @@ public class PLSQL_Generator implements CodeGenerator {
 					Charset.defaultCharset());
 			ruleType = PLSQL_Generator.readFile(realPath + "src-gen"+File.separator+"ruletype.txt",
 					Charset.defaultCharset());
+			
+			File removeGeneratedcodesql = new File(realPath + "src-gen"+File.separator+"generatedcode.sql");
+			File removeRuletypetxt = new File(realPath + "src-gen"+File.separator+"ruletype.txt");
+			File removeInputrdef = new File(realPath+"src-gen"+File.separator+"input.rdef");
+			removeGeneratedcodesql.delete();
+			removeRuletypetxt.delete();
+			removeInputrdef.delete();
+			
 		} catch (IOException e) {
 			//
 			e.printStackTrace();
@@ -81,6 +70,8 @@ public class PLSQL_Generator implements CodeGenerator {
 		result.put("generatedCode", generatedCode);
 		result.put("ruleType", ruleType);
 		
+		
+				
 		return result;
 	}
 

@@ -29,7 +29,7 @@ public class BusinessRule {
 	
 	private int status = 0; // Determines whether the business rule is active. Default is [0]: Disabled, [1]: Enabled.
 	private String entity = ""; // Stores what entity the business rule applies to.
-	private int consecutiveNumber = 0;
+	private int consecutiveNumber = 0; // Follow-Up number, is determined by the amount of business rules on a specific entity.
 	
 	public BusinessRule(){}
 	
@@ -39,7 +39,6 @@ public class BusinessRule {
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
 		this.description = description;
-		
 		this.lhsValue = new Value(lhsValue);
 		this.operator = new OperatorDAO().retrieveOperatorByName(operator);
 		this.rhsValues = new HashSet<Value>();
@@ -57,34 +56,15 @@ public class BusinessRule {
 		
 		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
-		
-		
-				
-		
-		
+			
 	}
 	
 	public String generateName(String appPartRuleName){
 		String entityAbr = lhsValue.abbreviateEntityName();
 		String ruleTypeAbr = frontEndRuleType.getAbbreviation();
-		int generatedNumber = 5;
-		
-		//		BRG_VBMG_PRT_CNS_ACMP_01
-		//		•	BRG: Business Rule Generator
-		//		•	VMBG: Applicatie
-		//		•	PRT: Entiteit “Product”
-		//		•	CNS: Het is een database constraint
-		//		•	ACMP: Attribute Compare Rule
-		//		•	01: Volgnummer
-
-		
+			
 		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + this.consecutiveNumber;
-    	//Entity abbreviation
-		
-		
-		
-    	//dynamic numbering*/
-	}
+    }
 	
 	@Override
 	public String toString() {
