@@ -38,7 +38,7 @@ public class Application {
 		this.getBusinessRules().add(generatedRule);
 		new ApplicationDAO().updateApplication(this);
 		
-		return generatedRule.toString();
+		return Integer.toString(generatedRule.getId());
 	}
 
 	private String generateRuleSting(String lhsValue, String operator, List<String> rhsValues) {
