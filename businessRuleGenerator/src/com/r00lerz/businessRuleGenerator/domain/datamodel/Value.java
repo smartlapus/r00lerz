@@ -1,5 +1,7 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import org.eclipse.emf.ecore.xml.type.internal.RegEx;
+
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ValueTypeDAO;
 
 public class Value {
@@ -12,36 +14,47 @@ public class Value {
 	
 	public Value(String valueString) {
 		this.value = valueString;
-		this.type = new ValueTypeDAO().retrieveTypeByName("Static value");
-		System.out.println(value + " " + type);
-		// TODO: A way to dynamicly retrieve the value type
+		this.type = evaluateValueType(valueString);
 	}
 
+	private ValueType evaluateValueType(String valueString){
+		ValueType resultType = null;
+		if (valueString.length() > 0 && (Character.isDigit(valueString.charAt(0)) || !value.contains("."))){
+			resultType = new ValueTypeDAO().retrieveTypeByName("static value");
+		}
+		else if (valueString.length() > 2 && (Character.isAlphabetic(valueString.charAt(0)) && valueString.contains("."))){
+			resultType = new ValueTypeDAO().retrieveTypeByName("dynamic value");
+		}
+		return resultType;
+	}
+	
 	@Override
 	public String toString() {
-		return value;
+		return value + " VALUE_TYPE: " + type;
 	}
 	
 	protected String parseEntityName(){
-		//TODO::Check if valueType = dynamic
-		String entity = value.split("\\.")[0];
-		entity = entity.replace("DEMO_", ""); // Just removing the DEMO_ part for now.
+		String entity = null;
+		if(this.type.isDynamic()){
+			entity = value.split("\\.")[0];
+			entity = entity.replace("DEMO_", ""); // Just removing the DEMO_ part for now.
+		}
 		return entity;
 	}
 	
 	protected String parseAttributeName(){
-		//TODO::Check if valueType = dynamic
-		String attribute = value.split("\\.")[1];
+		String attribute = null;
+		if(this.type.isDynamic()){
+			attribute = value.split("\\.")[1];
+		}
 		return attribute;
 	}
 	
 	public String abbreviateEntityName(){
 		String abbr = parseEntityName().substring(0,3).toUpperCase();
-		
-		
-		
 		return abbr;
 	}
+	
 	
 	protected String abbreviateAttributeName(){
 		return parseAttributeName().substring(0,3).toUpperCase();

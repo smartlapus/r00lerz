@@ -54,5 +54,9 @@ public class ValueType {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
-	}	
+	}
+	
+	public boolean isDynamic(){
+		return name.toLowerCase().equals("dynamic value") ;
+	}
 }
