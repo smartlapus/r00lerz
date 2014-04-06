@@ -1,16 +1,5 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
-import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
-
 public class ValueType {
 	private String name;
 	private int id;

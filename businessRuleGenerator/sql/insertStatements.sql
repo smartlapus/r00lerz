@@ -1,38 +1,54 @@
 --Application
-INSERT INTO brg_application values (1,'Customer sales app', 'CSA');
+INSERT INTO brg_application VALUES (1,'Customer sales app', 'CSA');
 
---Operators
-Insert Into Brg_Operator Values (1,'must be equal to');
-Insert Into Brg_Operator Values (2,'may not be equal to');
-Insert Into Brg_Operator Values (3,'must be smaller or equal to');
-Insert Into Brg_Operator Values (4,'must be bigger or equal to');
-Insert Into Brg_Operator Values (5,'must be bigger than');
-Insert Into Brg_Operator Values (6,'must be smaller than');
-Insert Into Brg_Operator Values (7,'must be between');
-Insert Into Brg_Operator Values (8,'may not be between');
-Insert Into Brg_Operator Values (9,'must be in');
-Insert Into Brg_Operator Values (10,'may not be in');
-Insert Into Brg_Operator Values (11,'must match');
-Insert Into Brg_Operator Values (12,'may not match');
+--operators
+INSERT INTO brg_operator VALUES (1,'must be equal to');
+INSERT INTO brg_operator VALUES (2,'may not be equal to');
+INSERT INTO brg_operator VALUES (3,'must be smaller or equal to');
+INSERT INTO brg_operator VALUES (4,'must be bigger or equal to');
+INSERT INTO brg_operator VALUES (5,'must be bigger than');
+INSERT INTO brg_operator VALUES (6,'must be smaller than');
+INSERT INTO brg_operator VALUES (7,'must be between');
+INSERT INTO brg_operator VALUES (8,'may not be between');
+INSERT INTO brg_operator VALUES (9,'must be in');
+INSERT INTO brg_operator VALUES (10,'may not be in');
+INSERT INTO brg_operator VALUES (11,'must match');
+INSERT INTO brg_operator VALUES (12,'may not match');
 
 --backend rule types
-Insert Into Brg_Back_End_Rule_Type Values (1, 'compare rule');
-Insert Into Brg_Back_End_Rule_Type Values (2, 'list rule');
-Insert Into Brg_Back_End_Rule_Type Values (3, 'regex rule');
+INSERT INTO brg_back_end_rule_type VALUES (1, 'compare rule');
+INSERT INTO brg_back_end_rule_type VALUES (2, 'list rule');
+INSERT INTO brg_back_end_rule_type VALUES (3, 'regex rule');
 
---Allowed operators
-Insert Into Brg_Allowed_Operators Values (1,1);
-Insert Into Brg_Allowed_Operators Values (1,2);
-Insert Into Brg_Allowed_Operators Values (1,3);
+--frontend rule types
+INSERT INTO brg_front_end_rule_type VALUES (1, 'attribute compare rule', 'ACR');
+INSERT INTO brg_front_end_rule_type VALUES (2, 'tuple compare rule', 'TCR');
+INSERT INTO brg_front_end_rule_type VALUES (3, 'attribute range rule', 'ARR');
 
-Insert Into Brg_Allowed_Operators Values (1,4);
-Insert Into Brg_Allowed_Operators Values (1,5);
-Insert Into Brg_Allowed_Operators Values (1,6);
-Insert Into Brg_Allowed_Operators Values (1,7);
-Insert Into Brg_Allowed_Operators Values (1,8);
+--allowed operators
+INSERT INTO brg_allowed_operators VALUES (1,1);
+INSERT INTO brg_allowed_operators VALUES (1,2);
+INSERT INTO brg_allowed_operators VALUES (1,3);
 
-Insert Into Brg_Allowed_Operators Values (2,9);
-Insert Into Brg_Allowed_Operators Values (2,10);
+INSERT INTO brg_allowed_operators VALUES (1,4);
+INSERT INTO brg_allowed_operators VALUES (1,5);
+INSERT INTO brg_allowed_operators VALUES (1,6);
+INSERT INTO brg_allowed_operators VALUES (1,7);
+INSERT INTO brg_allowed_operators VALUES (1,8);
 
-Insert Into Brg_Allowed_Operators Values (3,11);
-Insert Into Brg_Allowed_Operators Values (3,12);
+INSERT INTO brg_allowed_operators VALUES (2,9);
+INSERT INTO brg_allowed_operators VALUES (2,10);
+
+INSERT INTO brg_allowed_operators VALUES (3,11);
+INSERT INTO brg_allowed_operators VALUES (3,12);
+
+--Value types
+INSERT INTO brg_value_type VALUES (1,'static value');
+INSERT INTO brg_value_type VALUES (2,'dynamic value');
+
+--Language
+INSERT INTO brg_language VALUES (1, 'PL/SQL');
+
+--Application
+INSERT INTO brg_application VALUES (1, 'Application name here', 'ANH');
+
