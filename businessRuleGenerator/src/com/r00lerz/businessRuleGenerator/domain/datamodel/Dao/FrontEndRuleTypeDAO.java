@@ -18,8 +18,8 @@ public class FrontEndRuleTypeDAO {
 	public FrontEndRuleType retrieveTypeByName(String name) {
 		Session session = HibernateUtil.getSession();
 
-		Query query = session.createQuery("FROM FrontEndRuleType WHERE name = :name");
-		query.setParameter("name", name);
+		Query query = session.createQuery("FROM FrontEndRuleType WHERE lower(name) = :name");
+		query.setParameter("name", name.toLowerCase());
 		List<FrontEndRuleType> result = query.list();
 		return result.get(0);
 		

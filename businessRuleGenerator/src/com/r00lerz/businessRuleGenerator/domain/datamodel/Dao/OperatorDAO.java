@@ -18,8 +18,8 @@ public class OperatorDAO {
 	public Operator retrieveOperatorByName(String name) {
 		Session session = HibernateUtil.getSession();
 
-		Query query = session.createQuery("FROM Operator WHERE name = :name");
-		query.setParameter("name", name);
+		Query query = session.createQuery("FROM Operator WHERE lower(name) = :name");
+		query.setParameter("name", name.toLowerCase());
 		List<Operator> result = query.list();
 		return result.get(0);
 	}

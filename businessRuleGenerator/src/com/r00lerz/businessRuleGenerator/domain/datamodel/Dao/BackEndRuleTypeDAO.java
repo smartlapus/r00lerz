@@ -19,8 +19,8 @@ public class BackEndRuleTypeDAO {
 		List<BackEndRuleType> result = null;
 		Session session = HibernateUtil.getSession();
 
-		Query query = session.createQuery("FROM BackEndRuleType WHERE name = :name");
-		query.setParameter("name", name);
+		Query query = session.createQuery("FROM BackEndRuleType WHERE lower(name) = :name");
+		query.setParameter("name", name.toLowerCase());
 
 		result = query.list();
 		return result.get(0);

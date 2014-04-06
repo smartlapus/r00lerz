@@ -4,6 +4,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.hibernate.Query;
+
+import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BackEndRuleTypeDAO;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.FrontEndRuleTypeDAO;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.OperatorDAO;
@@ -22,6 +25,10 @@ public class BusinessRule {
 	private BackEndRuleType backEndRuleType;
 	private FrontEndRuleType frontEndRuleType;
 	private Set<GeneratedCode> generatedCode;
+	
+	private int status = 0; // Determines whether the business rule is active. Default is [0]: Disabled, [1]: Enabled.
+	private String entity = ""; // Stores what entity the business rule applies to.
+	private int consecutiveNumber = 0;
 	
 	public BusinessRule(){}
 	
@@ -42,15 +49,33 @@ public class BusinessRule {
 		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
 		
+		this.entity = lhsValue.split("\\.")[0];
+		
+		
+				
 		this.name = this.generateName(appPartRuleName);
+		
 	}
 	
 	public String generateName(String appPartRuleName){
 		String entityAbr = lhsValue.abbreviateEntityName();
 		String ruleTypeAbr = frontEndRuleType.getAbbreviation();
+		int generatedNumber = 5;
 		
-		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + "GENERATED_NUMBER_HERE";
+		//		BRG_VBMG_PRT_CNS_ACMP_01
+		//		•	BRG: Business Rule Generator
+		//		•	VMBG: Applicatie
+		//		•	PRT: Entiteit “Product”
+		//		•	CNS: Het is een database constraint
+		//		•	ACMP: Attribute Compare Rule
+		//		•	01: Volgnummer
+
+		
+		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + generatedNumber;
     	//Entity abbreviation
+		
+		
+		
     	//dynamic numbering*/
 	}
 	
@@ -67,6 +92,22 @@ public class BusinessRule {
 				+ "backEndRuleType= " + backEndRuleType + "\n"
 				+ "frontEndRuleType= " + frontEndRuleType + "\n" 
 				+ "generatedCode= " + generatedCode;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+
+	public String getEntity() {
+		return entity;
+	}
+
+	public void setEntity(String entity) {
+		this.entity = entity;
 	}
 
 	public int getId() {

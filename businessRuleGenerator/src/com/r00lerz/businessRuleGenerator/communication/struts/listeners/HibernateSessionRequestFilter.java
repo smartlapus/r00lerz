@@ -72,7 +72,8 @@ public class HibernateSessionRequestFilter implements Filter {
         
       
     }  
-  
+    
+
     public void destroy() {
     	  LogFactory.releaseAll();
     	

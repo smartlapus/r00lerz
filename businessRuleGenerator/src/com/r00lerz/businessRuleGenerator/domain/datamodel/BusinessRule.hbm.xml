@@ -14,6 +14,12 @@
         <property name="description" type="java.lang.String">
             <column name="DESCRIPTION" />
         </property>
+        <property name="status" type="integer">
+        	<column name="STATUS" />
+        </property>
+        <property name="entity" type="java.lang.String">
+        	<column name="ENTITY"/>
+        </property>
         
         <one-to-one name="condition" class="com.r00lerz.businessRuleGenerator.domain.datamodel.BusinessRule"></one-to-one>
         

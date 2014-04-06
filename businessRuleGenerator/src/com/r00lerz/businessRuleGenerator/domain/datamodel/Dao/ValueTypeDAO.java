@@ -18,8 +18,8 @@ public class ValueTypeDAO {
 	public ValueType retrieveTypeByName(String name) {
 
 		Session session = HibernateUtil.getSession();
-		Query query = session.createQuery("FROM ValueType WHERE name = :name");
-		query.setParameter("name", name);
+		Query query = session.createQuery("FROM ValueType WHERE lower(name) = :name");
+		query.setParameter("name", name.toLowerCase());
 		List<ValueType> result = query.list();
 		return result.get(0);
 	}

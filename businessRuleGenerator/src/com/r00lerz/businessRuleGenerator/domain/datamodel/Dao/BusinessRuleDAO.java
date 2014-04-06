@@ -6,21 +6,24 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
-import com.r00lerz.businessRuleGenerator.domain.datamodel.Language;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType;
 
-public class LanguageDAO {
+public class BusinessRuleDAO {
 	Session currentSession;
 
-	public LanguageDAO() {
+	public BusinessRuleDAO() {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public Language retrieveLanguageByName(String name) {
+	public int retrieveConsecutiveNumber() {
+		List<Integer> result = null;
 		Session session = HibernateUtil.getSession();
 
-		Query query = session.createQuery("FROM Language WHERE lower(name) = :name");
-		query.setParameter("name", name.toLowerCase());
-		List<Language> result = query.list();
+		Query query = session.createQuery("count(Entity) FROM BusinessRule");
+		
+		result = query.list();
 		return result.get(0);
+		
+	
 	}
 }
