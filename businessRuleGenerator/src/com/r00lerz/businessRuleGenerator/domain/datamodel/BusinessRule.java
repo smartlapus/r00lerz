@@ -8,6 +8,7 @@ import org.hibernate.Query;
 
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BackEndRuleTypeDAO;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BusinessRuleDAO;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.FrontEndRuleTypeDAO;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.OperatorDAO;
 
@@ -32,6 +33,8 @@ public class BusinessRule {
 	
 	public BusinessRule(){}
 	
+
+
 	public BusinessRule(String appPartRuleName, String description, String lhsValue,String operator, List<String> rhsValues, String frontEndRuleType, String generatedCode){
 		System.out.println("\n\nBusinessRule::Constructing BusinessRule");
 		
@@ -46,14 +49,18 @@ public class BusinessRule {
 		this.backEndRuleType = new BackEndRuleTypeDAO().retrieveTypeByName("Compare Rule");
 		this.frontEndRuleType = new FrontEndRuleTypeDAO().retrieveTypeByName(frontEndRuleType);
 		
+		this.entity = lhsValue.split("\\.")[0];
+		
+		this.consecutiveNumber = (int) new BusinessRuleDAO().retrieveConsecutiveNumber(this.entity);
+		
+		this.name = this.generateName(appPartRuleName);
+		
 		this.generatedCode = new HashSet<GeneratedCode>();
 		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
 		
-		this.entity = lhsValue.split("\\.")[0];
-		
 		
 				
-		this.name = this.generateName(appPartRuleName);
+		
 		
 	}
 	
@@ -71,7 +78,7 @@ public class BusinessRule {
 		//		•	01: Volgnummer
 
 		
-		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + generatedNumber;
+		return appPartRuleName + "_" + entityAbr + "_" + "TRG" + "_" + ruleTypeAbr + "_" + this.consecutiveNumber;
     	//Entity abbreviation
 		
 		
@@ -92,6 +99,14 @@ public class BusinessRule {
 				+ "backEndRuleType= " + backEndRuleType + "\n"
 				+ "frontEndRuleType= " + frontEndRuleType + "\n" 
 				+ "generatedCode= " + generatedCode;
+	}
+	
+	public int getConsecutiveNumber() {
+		return consecutiveNumber;
+	}
+
+	public void setConsecutiveNumber(int consecutiveNumber) {
+		this.consecutiveNumber = consecutiveNumber;
 	}
 
 	public int getStatus() {

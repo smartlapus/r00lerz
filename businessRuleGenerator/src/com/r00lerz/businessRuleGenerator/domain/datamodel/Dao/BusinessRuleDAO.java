@@ -15,14 +15,14 @@ public class BusinessRuleDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public int retrieveConsecutiveNumber() {
-		List<Integer> result = null;
+	public long retrieveConsecutiveNumber(String entity_string) {
+		List result = null;
 		Session session = HibernateUtil.getSession();
-
-		Query query = session.createQuery("count(Entity) FROM BusinessRule");
-		
+		Query query = session.createQuery("SELECT count(entity) FROM BusinessRule WHERE lower(entity) = :entity");
+		query.setParameter("entity", entity_string.toLowerCase());
 		result = query.list();
-		return result.get(0);
+		
+		return (long) result.get(0);
 		
 	
 	}
