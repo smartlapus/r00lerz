@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
+import com.r00lerz.ruleDef.RuleDefException;
 
 public class BrgServiceImpl implements BrgService {
 
@@ -22,7 +23,7 @@ public class BrgServiceImpl implements BrgService {
 	};
 
 	@Override
-	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) throws RuleDefException {
 		return application.generateRule(lhsValue, operator, rhsValues, realPath);
 	}
 

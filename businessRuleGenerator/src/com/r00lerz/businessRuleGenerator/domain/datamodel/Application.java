@@ -12,6 +12,7 @@ import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
+import com.r00lerz.ruleDef.RuleDefException;
 
 public class Application {
 
@@ -28,7 +29,7 @@ public class Application {
 		businessRules = new HashSet<BusinessRule>();
 	}
 
-	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) {
+	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) throws RuleDefException {
 		String ruleString = generateRuleSting(lhsValue, operator, rhsValues);
 		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
 
