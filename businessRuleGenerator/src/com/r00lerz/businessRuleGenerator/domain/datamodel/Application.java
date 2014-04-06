@@ -15,16 +15,16 @@ import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
 
 public class Application {
 
+	private static CodeGenerator codeGenerator = new PLSQL_Generator();
+	
 	private int id;
 	private String appName;
 	private String appNameAbbreviation;
 
 	private Set<BusinessRule> businessRules;
-	private CodeGenerator codeGenerator;
 	private TargetConnection targetConnection;
 
 	public Application() {
-		codeGenerator = new PLSQL_Generator();
 		businessRules = new HashSet<BusinessRule>();
 	}
 
