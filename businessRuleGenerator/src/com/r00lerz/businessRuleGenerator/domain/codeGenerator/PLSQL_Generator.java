@@ -51,6 +51,7 @@ public class PLSQL_Generator implements CodeGenerator {
 
 	@Override
 	public String generateRuleSet(String ruleSet) {
+		System.out.println("Generating trigger for: \n" +ruleSet);
 		return null;
 	}
 
