@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.struts2.ServletActionContext;
 import org.eclipse.xtext.validation.Issue;
 
+import com.google.gson.Gson;
 import com.opensymphony.xwork2.ActionSupport;
 import com.r00lerz.businessRuleGenerator.domain.BrgService;
 import com.r00lerz.businessRuleGenerator.domain.BrgServiceImpl;
@@ -33,7 +34,9 @@ public class DefineNewRuleAction extends ActionSupport {
 				result += issue+"\n";
 			}
 		}
-		this.result = result;
+		
+		Gson gson = new Gson();
+		this.result = gson.toJson(result);
 		
 		return ActionSupport.SUCCESS;
 	}
