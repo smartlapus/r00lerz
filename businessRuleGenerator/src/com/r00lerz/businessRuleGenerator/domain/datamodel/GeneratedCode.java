@@ -12,9 +12,8 @@ public class GeneratedCode implements Serializable{
 	
 	public GeneratedCode(){}
 	
-	public GeneratedCode(String generatedCode, String businessRuleName) {
-		this.generatedCode = "--Evaluates businessrule: " + businessRuleName + "\n";
-		this.generatedCode += generatedCode;
+	public GeneratedCode(String generatedCode) {
+		this.generatedCode = generatedCode;
 		this.language = new LanguageDAO().retrieveLanguageByName("PL/SQL");
 	}
 	

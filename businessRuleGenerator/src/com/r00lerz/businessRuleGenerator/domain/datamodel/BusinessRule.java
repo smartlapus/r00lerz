@@ -55,7 +55,7 @@ public class BusinessRule {
 		this.name = this.generateName(appPartRuleName);
 		
 		this.generatedCode = new HashSet<GeneratedCode>();
-		this.generatedCode.add(new GeneratedCode(generatedCode, this.name));
+		this.generatedCode.add(new GeneratedCode(generatedCode));
 			
 	}
 	
