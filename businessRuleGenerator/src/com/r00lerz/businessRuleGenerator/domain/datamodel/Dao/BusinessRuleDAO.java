@@ -29,4 +29,10 @@ public class BusinessRuleDAO {
 	public BusinessRule retrieveById(int id){
 		return (BusinessRule) currentSession.get(BusinessRule.class, id);
 	}
+	
+	public List<BusinessRule> retrieveRulesForActivation(String entity){
+		Query query = currentSession.createQuery("FROM BusinessRule WHERE lower(entity) = :entity AND status = 1");
+		query.setParameter("entity", entity.toLowerCase());
+		return query.list();
+	}
 }
