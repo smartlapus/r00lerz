@@ -17,6 +17,7 @@ public class DefineNewRuleAction extends ActionSupport {
 	private String lhsValue;
 	private String operator;
 	private List<String> rhsValues;
+	private String callback;
 	
 	//Out parameters
 	private String result;
@@ -60,5 +61,13 @@ public class DefineNewRuleAction extends ActionSupport {
 	
 	public String getResult(){
 		return result;
+	}
+	
+	public String getCallback() {
+		return callback;
+	}
+	
+	public void setCallback(String callback) {
+		this.callback = callback;
 	}
 }
