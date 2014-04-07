@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2014 1:56:09 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.r00lerz.businessRuleGenerator.domain.datamodel.Value" table="BRG_VALUE">
+        <id name="id" type="int">
+            <column name="ID" />
+            <generator class="native" />
+        </id>
+        <property name="value" type="java.lang.String">
+            <column name="VALUE" />
+        </property>
+        <many-to-one name="type" class="com.r00lerz.businessRuleGenerator.domain.datamodel.ValueType" fetch="join">
+            <column name="TYPE" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

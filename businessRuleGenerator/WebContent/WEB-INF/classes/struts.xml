@@ -6,10 +6,9 @@
 <struts>
 
     <constant name="struts.enable.DynamicMethodInvocation" value="false" />
-    <constant name="struts.devMode" value="false" />
+    <constant name="struts.devMode" value="true" />
 
     <package name="default" namespace="/" extends="struts-default">
-
         <default-action-ref name="index" />
 
         <global-results>
@@ -19,16 +18,21 @@
         <global-exception-mappings>
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
+        
+        <action name="activate" class="com.r00lerz.businessRuleGenerator.communication.struts.ActiveRuleAction">
+			<result>/activate.jsp</result>
+		</action>
 
-        <action name="index">
-            <result type="redirectAction">
-                <param name="actionName">HelloWorld</param>
-                <param name="namespace">/example</param>
-            </result>
-        </action>
+        <action name="define" class="com.r00lerz.businessRuleGenerator.communication.struts.DefineNewRuleAction">
+			<result>/define.jsp</result>
+		</action>
+       
+		<action name="getTargetData" class="com.r00lerz.businessRuleGenerator.communication.struts.GetTargetDataAction">
+			<result>/targetData.jsp</result>
+		</action> 
     </package>
 
-    <include file="example.xml"/>
+   
 
     <!-- Add packages here -->
 

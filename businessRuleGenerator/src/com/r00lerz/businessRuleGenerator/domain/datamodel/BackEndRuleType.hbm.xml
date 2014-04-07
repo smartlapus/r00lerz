@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2014 2:47:53 AM by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+	<class
+		name="com.r00lerz.businessRuleGenerator.domain.datamodel.BackEndRuleType"
+		table="BRG_BACK_END_RULE_TYPE">
+		<id name="id" type="int">
+			<column name="ID" />
+			<generator class="native" />
+		</id>
+		<property name="name" type="java.lang.String">
+			<column name="NAME" />
+		</property>
+		<set name="allowedOperators" cascade="save-update" table="BRG_ALLOWED_OPERATORS">
+			<key column="BACK_END_RULE_TYPE_ID" />
+			<many-to-many column="OPERATOR_ID" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Operator" />
+		</set>
+	</class>
+</hibernate-mapping>
