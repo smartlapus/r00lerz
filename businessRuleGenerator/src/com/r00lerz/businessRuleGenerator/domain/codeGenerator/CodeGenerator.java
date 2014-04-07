@@ -6,5 +6,5 @@ import com.r00lerz.ruleDef.RuleDefException;
 
 public interface CodeGenerator {
 	public Map<String,String> generateRule(String rule, String realPath) throws RuleDefException;
-	public String generateRuleSet(String ruleSet);
+	public String generateRuleSet(String ruleSet, String realPath);
 }

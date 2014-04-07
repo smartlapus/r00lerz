@@ -9,7 +9,7 @@ public interface BrgService {
 	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) throws RuleDefException;
 	
 	
-	public void activeBusinessRule(int id);
+	public void activeBusinessRule(int id, String realPath);
 	
 	
 	public void deactivateBusinessRule(int id);

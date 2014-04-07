@@ -58,16 +58,18 @@ public class Application {
 		return ruleString;
 	}
 	
-	public void activateRule(int id) {
+	public void activateRule(int id, String realPath) {
 		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
 		
-		String ruleSet = "";
+		
 		List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
+		String ruleSet = "<trigger>\n";
 		for(BusinessRule rule : rulesToInclude){
-			ruleSet += rule.getDescription() + "\n";
+			ruleSet += rule.getDescription() + " ${NAME:"+rule.getName()+"}"+"\n";
 		}
-		codeGenerator.generateRuleSet(ruleSet);
+		String result = codeGenerator.generateRuleSet(ruleSet, realPath);
+		System.out.println(result);
 	}
 	
 	public String toString() {

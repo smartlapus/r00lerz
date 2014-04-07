@@ -28,8 +28,8 @@ public class BrgServiceImpl implements BrgService {
 	}
 
 	@Override
-	public void activeBusinessRule(int id) {
-		application.activateRule(id);
+	public void activeBusinessRule(int id, String realPath) {
+		application.activateRule(id, realPath);
 	}
 
 	@Override

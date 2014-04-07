@@ -19,7 +19,7 @@ public class ActiveRuleAction extends ActionSupport { // implements UserAware
 		BrgService service = BrgServiceImpl.getService();
 		
 		String result = "";
-		service.activeBusinessRule(id);
+		service.activeBusinessRule(id, realPath);
 		return ActionSupport.SUCCESS;
 	}
 
