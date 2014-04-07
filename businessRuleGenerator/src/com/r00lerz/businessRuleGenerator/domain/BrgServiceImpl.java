@@ -28,7 +28,7 @@ public class BrgServiceImpl implements BrgService {
 	}
 
 	@Override
-	public void activeBusinessRule(int id, String realPath) {
+	public void activeBusinessRule(int id, String realPath) throws RuleDefException {
 		application.activateRule(id, realPath);
 	}
 

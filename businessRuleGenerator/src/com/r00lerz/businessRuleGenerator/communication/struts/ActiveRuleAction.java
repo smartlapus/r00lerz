@@ -1,7 +1,6 @@
 package com.r00lerz.businessRuleGenerator.communication.struts;
 
 import org.apache.struts2.ServletActionContext;
-import org.eclipse.xtext.validation.Issue;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.r00lerz.businessRuleGenerator.domain.BrgService;
@@ -19,7 +18,12 @@ public class ActiveRuleAction extends ActionSupport { // implements UserAware
 		BrgService service = BrgServiceImpl.getService();
 		
 		String result = "";
-		service.activeBusinessRule(id, realPath);
+		try {//TODO::THINK OF A WAY TO HANDLE THE EXCEPTION
+			service.activeBusinessRule(id, realPath);
+		} catch (RuleDefException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return ActionSupport.SUCCESS;
 	}
 
