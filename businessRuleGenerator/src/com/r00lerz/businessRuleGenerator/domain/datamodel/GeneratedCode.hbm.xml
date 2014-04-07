@@ -8,7 +8,7 @@
             <column name="ID" />
             <generator class="native" />
         </id>
-        <property name="generatedCode" type="text">
+        <property name="generatedCode" type="text" length="10485760">
             <column name="GENERATED_CODE" />
         </property>
         <many-to-one name="language" class="com.r00lerz.businessRuleGenerator.domain.datamodel.Language" cascade="merge" fetch="join">
