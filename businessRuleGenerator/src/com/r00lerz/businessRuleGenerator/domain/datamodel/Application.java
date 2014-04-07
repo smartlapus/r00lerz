@@ -12,6 +12,7 @@ import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ApplicationDAO;
+import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.BusinessRuleDAO;
 import com.r00lerz.ruleDef.RuleDefException;
 
 public class Application {
@@ -55,6 +56,11 @@ public class Application {
 			}
 		}
 		return ruleString;
+	}
+	
+	public void activateRule(int id) {
+		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
+		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
 	}
 	
 	public String toString() {

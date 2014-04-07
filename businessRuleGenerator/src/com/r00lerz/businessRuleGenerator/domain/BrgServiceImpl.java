@@ -29,8 +29,7 @@ public class BrgServiceImpl implements BrgService {
 
 	@Override
 	public void activeBusinessRule(int id) {
-		// TODO Auto-generated method stub
-
+		application.activateRule(id);
 	}
 
 	@Override
