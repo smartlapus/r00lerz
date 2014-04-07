@@ -61,6 +61,13 @@ public class Application {
 	public void activateRule(int id) {
 		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
+		
+		String ruleSet = "";
+		List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
+		for(BusinessRule rule : rulesToInclude){
+			ruleSet += rule.getDescription() + "\n";
+		}
+		codeGenerator.generateRuleSet(ruleSet);
 	}
 	
 	public String toString() {
