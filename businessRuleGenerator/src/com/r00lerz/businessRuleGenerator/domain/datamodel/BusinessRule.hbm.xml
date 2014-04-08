@@ -25,8 +25,10 @@
 		<property name="consecutiveNumber" type="integer">
 			<column name="CONSECUTIVENUMBER" />
 		</property>
+		
+		<!--THIS DOESNT WORK. NEED TO LOOK FOR SOME OTHER WAY AT A LATER MOMENT
 		<one-to-one name="condition"
-			class="com.r00lerz.businessRuleGenerator.domain.datamodel.BusinessRule"></one-to-one>
+			class="com.r00lerz.businessRuleGenerator.domain.datamodel.BusinessRule"></one-to-one-->
 
 		<many-to-one name="lhsValue"
 			class="com.r00lerz.businessRuleGenerator.domain.datamodel.Value"
