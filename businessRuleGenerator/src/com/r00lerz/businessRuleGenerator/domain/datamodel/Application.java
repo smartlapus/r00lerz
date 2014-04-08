@@ -29,7 +29,7 @@ public class Application {
 
 	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) throws RuleDefException {
 		String ruleString = generateRuleSting(lhsValue, operator, rhsValues);
-		String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
+		String appPartRuleName = generateNamePartOne();
 
 		Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
 		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
@@ -59,9 +59,14 @@ public class Application {
 		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
 		
+		//TODO:: WE NEED TO LOOK INTO THIS, BECAUSE THER IS THERE IS A CHANCE THAT GENERATED TRIGGER NAMES ARE NOT UNIQUE...
+		String triggername = generateNamePartOne()+"_"+businessRuleToActivate.getLhsValue().abbreviateEntityName()+"_TRIGGER";
+		String tablename = businessRuleToActivate.getEntity();
+		System.out.println(tablename);
+		System.out.println(triggername);
 		
 		List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
-		String ruleSet = "<trigger>\n";
+		String ruleSet = "${ENTITYNAME: " + tablename + " RESULTSETNAME: " + triggername + "}";
 		for(BusinessRule rule : rulesToInclude){
 			ruleSet += rule.getDescription() + " ${NAME:"+rule.getName()+"}"+"\n";
 		}
@@ -108,5 +113,9 @@ public class Application {
 
 	public void setBusinessRules(Set<BusinessRule> businessRules) {
 		this.businessRules = businessRules;
+	}
+	
+	public String generateNamePartOne(){
+		return "BRG" + "_" + appNameAbbreviation;
 	}
 }

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.metadata.ClassMetadata;
 
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
@@ -22,15 +23,15 @@ public class BusinessRuleDAO {
 		Query query = currentSession.createQuery("SELECT count(entity) FROM BusinessRule WHERE lower(entity) = :entity");
 		query.setParameter("entity", entity_string.toLowerCase());
 		result = query.list();
-		
+
 		return (long) result.get(0);
 	}
-	
-	public BusinessRule retrieveById(int id){
+
+	public BusinessRule retrieveById(int id) {
 		return (BusinessRule) currentSession.get(BusinessRule.class, id);
 	}
-	
-	public List<BusinessRule> retrieveRulesForActivation(String entity){
+
+	public List<BusinessRule> retrieveRulesForActivation(String entity) {
 		Query query = currentSession.createQuery("FROM BusinessRule WHERE lower(entity) = :entity AND status = 1");
 		query.setParameter("entity", entity.toLowerCase());
 		return query.list();
