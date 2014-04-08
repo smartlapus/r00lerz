@@ -27,12 +27,12 @@ public class Application {
 		businessRules = new HashSet<BusinessRule>();
 	}
 
-	public String generateRule(String lhsValue, String operator, List<String> rhsValues, String realPath) throws RuleDefException {
-		String ruleString = generateRuleSting(lhsValue, operator, rhsValues);
-		String appPartRuleName = generateNamePartOne();
+	public String generateRule(final String lhsValue, final String operator, final List<String> rhsValues, final String realPath) throws RuleDefException {
+		final String ruleString = generateRuleSting(lhsValue, operator, rhsValues);
+		final String appPartRuleName = "BRG" + "_" + appNameAbbreviation;
 
-		Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
-		BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
+		final Map<String, String> generationResult = codeGenerator.generateRule(ruleString, realPath);
+		final BusinessRule generatedRule = new BusinessRule(appPartRuleName, ruleString, lhsValue, operator, rhsValues, generationResult.get("ruleType"), generationResult.get("generatedCode"));
 		
 		this.getBusinessRules().add(generatedRule);
 		new ApplicationDAO().updateApplication(this);
@@ -40,15 +40,15 @@ public class Application {
 		return Integer.toString(generatedRule.getId());
 	}
 
-	private String generateRuleSting(String lhsValue, String operator, List<String> rhsValues) {
+	private String generateRuleSting(final String lhsValue, final String operator, final List<String> rhsValues) {
 		String ruleString = lhsValue + " " + operator + " ";
 
 		for (int i = 0; i < rhsValues.size(); i++) {
 			ruleString += rhsValues.get(i);
 
-			if ((rhsValues.size() == 2) && i == 0) {
+			if ((rhsValues.size() == 2) && i == 0) 
 				ruleString += " and ";
-			} else if (rhsValues.size() > 2) {
+			else if(rhsValues.size() > 2) {
 				// code to generate list here
 			}
 		}
@@ -62,24 +62,22 @@ public class Application {
 		//TODO:: WE NEED TO LOOK INTO THIS, BECAUSE THER IS THERE IS A CHANCE THAT GENERATED TRIGGER NAMES ARE NOT UNIQUE...
 		String triggername = generateNamePartOne()+"_"+businessRuleToActivate.getLhsValue().abbreviateEntityName()+"_TRIGGER";
 		String tablename = businessRuleToActivate.getEntity();
-		System.out.println(tablename);
-		System.out.println(triggername);
 		
-		List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
+		final List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
 		String ruleSet = "${ENTITYNAME: " + tablename + " RESULTSETNAME: " + triggername + "}";
-		for(BusinessRule rule : rulesToInclude){
+		for(final BusinessRule rule : rulesToInclude){
 			ruleSet += rule.getDescription() + " ${NAME:"+rule.getName()+"}"+"\n";
 		}
-		String result = codeGenerator.generateRuleSet(ruleSet, realPath);
+		final String result = codeGenerator.generateRuleSet(ruleSet, realPath);
 		System.out.println(result);
 	}
 	
 	public String toString() {
-		String s = "Aplication: " + appName + id + "\n";
+		final StringBuffer s = new StringBuffer().append("Aplication: " + appName + id + "\n");
 		for (BusinessRule br : businessRules) {
-			s += br;
+			s.append(br);
 		}
-		return s;
+		return s.toString();
 
 	}
 
@@ -95,7 +93,7 @@ public class Application {
 		return appName;
 	}
 
-	public void setAppName(String appName) {
+	public void setAppName(final String appName) {
 		this.appName = appName;
 	}
 
@@ -103,7 +101,7 @@ public class Application {
 		return appNameAbbreviation;
 	}
 
-	public void setAppNameAbbreviation(String appNameAbbreviation) {
+	public void setAppNameAbbreviation(final String appNameAbbreviation) {
 		this.appNameAbbreviation = appNameAbbreviation;
 	}
 
@@ -111,7 +109,7 @@ public class Application {
 		return businessRules;
 	}
 
-	public void setBusinessRules(Set<BusinessRule> businessRules) {
+	public void setBusinessRules(final Set<BusinessRule> businessRules) {
 		this.businessRules = businessRules;
 	}
 	

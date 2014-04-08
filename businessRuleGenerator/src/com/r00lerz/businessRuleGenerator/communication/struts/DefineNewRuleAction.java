@@ -28,6 +28,7 @@ public class DefineNewRuleAction extends ActionSupport {
 		BrgService service = BrgServiceImpl.getService();
 		
 		String result = "";
+		
 		try {
 			result = service.generateRule(lhsValue, operator, rhsValues, realPath);
 		} catch (RuleDefException e) {
