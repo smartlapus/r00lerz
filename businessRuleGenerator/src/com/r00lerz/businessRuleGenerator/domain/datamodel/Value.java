@@ -1,7 +1,5 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
-import org.eclipse.emf.ecore.xml.type.internal.RegEx;
-
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.ValueTypeDAO;
 
 public class Value {

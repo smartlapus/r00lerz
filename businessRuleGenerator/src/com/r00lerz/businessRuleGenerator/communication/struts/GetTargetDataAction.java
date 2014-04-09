@@ -23,9 +23,8 @@ public class GetTargetDataAction extends ActionSupport{
 			try {
 				TargetConnection connection = new OracleTargetConnection();
 				target = connection.getTargetData();
-				connection.close();
 			} catch(Exception e) {
-				// FAIL
+				e.printStackTrace();
 			}
 			if(target != null) {
 				setJSON(gson.toJson(target));

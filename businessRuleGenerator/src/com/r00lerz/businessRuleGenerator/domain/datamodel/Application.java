@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.OracleTargetConnection;
 import com.r00lerz.businessRuleGenerator.abstractDataLayer.targetConnection.TargetConnection;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.CodeGenerator;
 import com.r00lerz.businessRuleGenerator.domain.codeGenerator.PLSQL_Generator;
@@ -15,13 +16,14 @@ import com.r00lerz.ruleDef.RuleDefException;
 public class Application {
 
 	private static CodeGenerator codeGenerator = new PLSQL_Generator();
+	private static TargetConnection targetConnection = new OracleTargetConnection();
 	
 	private int id;
 	private String appName;
 	private String appNameAbbreviation;
 
 	private Set<BusinessRule> businessRules;
-	private TargetConnection targetConnection;
+	
 
 	public Application() {
 		businessRules = new HashSet<BusinessRule>();
