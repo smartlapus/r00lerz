@@ -41,16 +41,10 @@ public class OracleTargetConnection implements TargetConnection {
 	@Override
 	public void executeStatement(String query) throws SQLException {
 		Connection connection = this.createConnection();
-		PreparedStatement statement = connection.prepareStatement(query);
+		Statement statement = connection.createStatement();
 
-		statement.executeQuery();
+		statement.executeQuery(query);
 		this.close(statement, connection);
-	}
-	
-	public static void main(String[]args) throws SQLException{
-		TargetConnection tc = new OracleTargetConnection();
-		
-		tc.executeStatement("CREATE OR REPLACE TRIGGER BRG_CSA_ORD_TRIGGER	BEFORE DELETE OR INSERT OR UPDATE	ON ORDERITEMS	FOR EACH ROW DECLARE	l_oper			varchar2(3);	l_error_stack	varchar2(4000);BEGIN	IF INSERTING THEN		l_oper :='INS';	ELSIF UPDATING THEN		l_oper :='UPD';	ELSIF DELETING THEN		l_oper :='DEL';	END IF;	--Evaluates: BRG_CSA_ORD_TRG_ACR_11	DECLARE		l_passed boolean := true;	BEGIN		IF l_oper in ('INS', 'UPD')THEN --shoulde be replaced with dynamic code later.			l_passed := :new.ORDER_ITEM_ID = 11;			IF NOT l_passed THEN				l_error_stack := l_error_stack || 'ORDERITEMS.ORDER_ITEM_ID must be equal to 11.';			END IF;		END IF;	END;	IF l_error_stack IS NOT NULL THEN		raise_application_error(-20800, l_error_stack);	END IF;END BRG_CSA_ORD_TRIGGER;");
 	}
 
 	@Override
