@@ -58,7 +58,7 @@ public class Application {
 		return ruleString;
 	}
 	
-	public void activateRule(int id, String realPath) throws RuleDefException {
+	public void activateRule(int id, String realPath) throws RuleDefException, SQLException {
 		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
 		//TODO:: WE NEED TO LOOK INTO THIS, BECAUSE THER IS THERE IS A CHANCE THAT GENERATED TRIGGER NAMES ARE NOT UNIQUE...
@@ -76,8 +76,8 @@ public class Application {
 			targetConnection.executeStatement(result);
 			System.out.println(result);
 		} catch (SQLException e) {
-			e.printStackTrace();
 			businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status back if activating the trigger fails;
+			throw e;
 		}
 	}
 	

@@ -1,5 +1,6 @@
 package com.r00lerz.businessRuleGenerator.communication.struts;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,6 +24,7 @@ public class ActivateRuleAction extends ActionSupport {
 	public String execute() {
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
 		BrgService service = BrgServiceImpl.getService();
+		List<String> errors = new ArrayList<String>();
 
 		Map<String, Object> result = new HashMap<String, Object>();
 		try {//TODO::THINK OF A WAY TO HANDLE THE EXCEPTION
@@ -30,12 +32,17 @@ public class ActivateRuleAction extends ActionSupport {
 			result.put("success", id);
 		} catch (RuleDefException e) {
 			e.printStackTrace();
-			List<String> errors = new ArrayList<String>();
 			for (Issue issue : e.getIssues()){
 				System.out.println(issue);
 				errors.add(issue.getMessage());
 			}
-			result.put("errors", errors);
+		} catch (SQLException se){
+			se.printStackTrace();
+			errors.add(se.getMessage());
+		} finally {
+			if (errors.isEmpty()){
+				result.put("errors", errors);
+			}
 		}
 		Gson gson = new Gson();
 		this.result = gson.toJson(result);

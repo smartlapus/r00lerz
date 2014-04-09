@@ -1,5 +1,6 @@
 package com.r00lerz.businessRuleGenerator.domain;
 
+import java.sql.SQLException;
 import java.util.List;
 
 import com.r00lerz.businessRuleGenerator.domain.datamodel.Application;
@@ -28,7 +29,7 @@ public class BrgServiceImpl implements BrgService {
 	}
 
 	@Override
-	public void activeBusinessRule(int id, String realPath) throws RuleDefException {
+	public void activeBusinessRule(int id, String realPath) throws RuleDefException, SQLException {
 		application.activateRule(id, realPath);
 	}
 
