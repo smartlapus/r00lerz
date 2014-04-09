@@ -1,5 +1,6 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
+import java.sql.SQLException;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -72,6 +73,12 @@ public class Application {
 		}
 		final String result = codeGenerator.generateRuleSet(ruleSet, realPath);
 		System.out.println(result);
+		try {
+			targetConnection.executeStatement(result);
+			System.out.println(result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public String toString() {
