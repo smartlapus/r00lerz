@@ -6,13 +6,13 @@ import com.r00lerz.businessRuleGenerator.domain.datamodel.Dao.LanguageDAO;
 
 public class GeneratedCode implements Serializable{
 	
-	private int id;
-	private String generatedCode;
+	private int id; // Hibernate is mapped with variable names. id is what our column name is.
+	private String generatedCode; // PMD: it's clear in the context.
 	private Language language;
 	
-	public GeneratedCode(){}
+	public GeneratedCode(){} // PMD: empty constructors are required for Hibernate
 	
-	public GeneratedCode(String generatedCode) {
+	public GeneratedCode(final String generatedCode) {
 		this.generatedCode = generatedCode;
 		this.language = new LanguageDAO().retrieveLanguageByName("PL/SQL");
 	}
@@ -22,7 +22,7 @@ public class GeneratedCode implements Serializable{
 		return generatedCode;
 	}
 
-	public String getBusiness_rule_code() {
+	public String getBusinessRuleCode() {
 		return generatedCode;
 	}
 
@@ -30,7 +30,7 @@ public class GeneratedCode implements Serializable{
 		return language;
 	}
 
-	public void setLanguage(Language language) {
+	public void setLanguage(final Language language) {
 		this.language = language;
 	}
 
@@ -38,7 +38,7 @@ public class GeneratedCode implements Serializable{
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -46,7 +46,7 @@ public class GeneratedCode implements Serializable{
 		return generatedCode;
 	}
 
-	public void setGeneratedCode(String generatedCode) {
+	public void setGeneratedCode(final String generatedCode) {
 		this.generatedCode = generatedCode;
 	}
 }

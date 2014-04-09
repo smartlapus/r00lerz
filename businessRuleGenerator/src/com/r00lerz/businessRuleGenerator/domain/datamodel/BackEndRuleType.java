@@ -18,7 +18,7 @@ public class BackEndRuleType {
 		this.allowedOperators = new HashSet<Operator>();
 	}
 	
-	public BackEndRuleType(String name){
+	public BackEndRuleType(final String name){
 		super();
 		this.name = name;
 	}
@@ -27,7 +27,7 @@ public class BackEndRuleType {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -35,7 +35,7 @@ public class BackEndRuleType {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
@@ -43,10 +43,11 @@ public class BackEndRuleType {
 		return allowedOperators;
 	}
 
-	public void setAllowedOperators(Set<Operator> allowedOperators) {
+	public void setAllowedOperators(final Set<Operator> allowedOperators) {
 		this.allowedOperators = allowedOperators;
 	}
 	
+	@Override
 	public String toString(){
 		return "BackEndRuleType toString: " + this.name + " " + this.allowedOperators;
 	}

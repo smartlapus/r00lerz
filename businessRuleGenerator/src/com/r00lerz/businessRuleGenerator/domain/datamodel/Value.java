@@ -10,17 +10,17 @@ public class Value {
 
 	public Value(){}
 	
-	public Value(String valueString) {
+	public Value(final String valueString) {
 		this.value = valueString;
 		this.type = evaluateValueType(valueString);
 	}
 
-	private ValueType evaluateValueType(String valueString){
+	private ValueType evaluateValueType(final String valueString){
 		ValueType resultType = null;
 		if (valueString.length() > 0 && (Character.isDigit(valueString.charAt(0)) || !value.contains("."))){
 			resultType = new ValueTypeDAO().retrieveTypeByName("static value");
 		}
-		else if (valueString.length() > 2 && (Character.isAlphabetic(valueString.charAt(0)) && valueString.contains("."))){
+		else if (valueString.length() > 2 && Character.isAlphabetic(valueString.charAt(0)) && valueString.contains(".")){
 			resultType = new ValueTypeDAO().retrieveTypeByName("dynamic value");
 		}
 		return resultType;
@@ -49,7 +49,7 @@ public class Value {
 	}
 	
 	public String abbreviateEntityName(){
-		String abbr = parseEntityName().substring(0,3).toUpperCase();
+		final String abbr = parseEntityName().substring(0,3).toUpperCase();
 		return abbr;
 	}
 	
@@ -62,7 +62,7 @@ public class Value {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -70,7 +70,7 @@ public class Value {
 		return value;
 	}
 
-	public void setValue(String value) {
+	public void setValue(final String value) {
 		this.value = value;
 	}
 
@@ -78,7 +78,7 @@ public class Value {
 		return type;
 	}
 
-	public void setType(ValueType type) {
+	public void setType(final ValueType type) {
 		this.type = type;
 	}
 }

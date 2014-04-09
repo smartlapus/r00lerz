@@ -13,13 +13,13 @@ import org.hibernate.cfg.Configuration;
 import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 
 public class Language implements Serializable {
-	private int id;
+	private int id; // Hibernate is mapped with variable names. id is what our column name is.
 	private String name;
 
-	public Language() {
+	public Language() { // PMD: empty constructors are required for Hibernate
 	}
 
-	public Language(String name) {
+	public Language(final String name) {
 		this.name = name;
 	}
 
@@ -27,7 +27,7 @@ public class Language implements Serializable {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -35,7 +35,7 @@ public class Language implements Serializable {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 }

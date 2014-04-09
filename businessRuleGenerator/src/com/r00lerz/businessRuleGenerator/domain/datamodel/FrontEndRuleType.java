@@ -19,7 +19,7 @@ public class FrontEndRuleType {
 	public FrontEndRuleType() {
 	}
 
-	public FrontEndRuleType(String frontEndRuleType) {
+	public FrontEndRuleType(final String frontEndRuleType) {
 		this.name = frontEndRuleType;
 		this.generateAbbreviation();
 	}
@@ -53,7 +53,7 @@ public class FrontEndRuleType {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -61,11 +61,11 @@ public class FrontEndRuleType {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 
-	public void setAbbreviation(String abbreviation) {
+	public void setAbbreviation(final String abbreviation) {
 		this.abbreviation = abbreviation;
 	}
 }

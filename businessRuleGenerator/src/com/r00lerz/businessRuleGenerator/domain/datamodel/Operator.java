@@ -1,15 +1,5 @@
 package com.r00lerz.businessRuleGenerator.domain.datamodel;
 
-import java.util.List;
-
-import org.hibernate.HibernateException;
-import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import com.r00lerz.businessRuleGenerator.domain.HibernateUtil;
 
 public class Operator {
 	
@@ -18,7 +8,7 @@ public class Operator {
 	
 	public Operator(){}
 	
-	public Operator(String name) {
+	public Operator(final String name) {
 		this.name = name;
 	}
 	
@@ -26,7 +16,7 @@ public class Operator {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -34,7 +24,7 @@ public class Operator {
 		return name;
 	}
 	
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 

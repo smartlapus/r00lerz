@@ -44,33 +44,35 @@ public class Application {
 	}
 
 	private String generateRuleSting(final String lhsValue, final String operator, final List<String> rhsValues) {
-		String ruleString = lhsValue + " " + operator + " ";
+		final StringBuffer ruleString = new StringBuffer().append(lhsValue + " " + operator + " ");
 
 		for (int i = 0; i < rhsValues.size(); i++) {
-			ruleString += rhsValues.get(i);
+			ruleString.append(rhsValues.get(i));
 
-			if ((rhsValues.size() == 2) && i == 0) 
-				ruleString += " and ";
+			if (rhsValues.size() == 2 && i == 0){
+				ruleString.append(" and ");
+			}
 			else if(rhsValues.size() > 2) {
 				// code to generate list here
 			}
 		}
-		return ruleString;
+		return ruleString.toString();
 	}
 	
-	public void activateRule(int id, String realPath) throws RuleDefException, SQLException {
-		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
+	public void activateRule(final int id, final String realPath) throws RuleDefException, SQLException {
+		final BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
 		//TODO:: WE NEED TO LOOK INTO THIS, BECAUSE THER IS THERE IS A CHANCE THAT GENERATED TRIGGER NAMES ARE NOT UNIQUE...
-		String triggername = generateNamePartOne()+"_"+businessRuleToActivate.getLhsValue().abbreviateEntityName()+"_TRIGGER";
-		String tablename = businessRuleToActivate.getEntity();
+		final 	String triggername = generateNamePartOne()+"_"+businessRuleToActivate.getLhsValue().abbreviateEntityName()+"_TRIGGER";
+		final String tablename = businessRuleToActivate.getEntity();
 		
 		final List<BusinessRule> rulesToInclude = new BusinessRuleDAO().retrieveRulesForActivation(businessRuleToActivate.getEntity());
-		String ruleSet = "${ENTITYNAME: " + tablename + " RESULTSETNAME: " + triggername + "}";
+		final 	StringBuffer ruleSet = new StringBuffer().append( "${ENTITYNAME: " + tablename + " RESULTSETNAME: " + triggername + "}");
 		for(final BusinessRule rule : rulesToInclude){
-			ruleSet += rule.getDescription() + " ${NAME:"+rule.getName()+"}"+"\n";
+			ruleSet.append(rule.getDescription());
+			ruleSet.append(" ${NAME:"+rule.getName()+"}"+"\n");
 		}
-		final String result = codeGenerator.generateRuleSet(ruleSet, realPath);
+		final String result = codeGenerator.generateRuleSet(ruleSet.toString(), realPath);
 		System.out.println(result);
 		try {
 			targetConnection.executeStatement(result);
@@ -81,12 +83,13 @@ public class Application {
 		}
 	}
 	
+	@Override
 	public String toString() {
-		final StringBuffer s = new StringBuffer().append("Aplication: " + appName + id + "\n");
-		for (BusinessRule br : businessRules) {
-			s.append(br);
+		final StringBuffer string = new StringBuffer().append("Aplication: " + appName + id + "\n");
+		for (final BusinessRule br : businessRules) {
+			string.append(br);
 		}
-		return s.toString();
+		return string.toString();
 
 	}
 
@@ -94,7 +97,7 @@ public class Application {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 

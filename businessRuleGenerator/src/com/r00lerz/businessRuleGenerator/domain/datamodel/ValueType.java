@@ -6,7 +6,7 @@ public class ValueType {
 	
 	public ValueType(){}
 	
-	public ValueType(String name){
+	public ValueType(final String name){
 		this.name = name;
 	}
 	
@@ -14,7 +14,7 @@ public class ValueType {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(final int id) {
 		this.id = id;
 	}
 
@@ -22,7 +22,7 @@ public class ValueType {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setName(final String name) {
 		this.name = name;
 	}
 	
@@ -57,6 +57,6 @@ public class ValueType {
 	}
 	
 	public boolean isDynamic(){
-		return name.toLowerCase().equals("dynamic value") ;
+		return name.equalsIgnoreCase("dynamic value");
 	}
 }
