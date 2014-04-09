@@ -61,7 +61,6 @@ public class Application {
 	public void activateRule(int id, String realPath) throws RuleDefException {
 		BusinessRule businessRuleToActivate = new BusinessRuleDAO().retrieveById(id);
 		businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status of the businessRule. So when its 0 it becomes 1 and the other way around
-		
 		//TODO:: WE NEED TO LOOK INTO THIS, BECAUSE THER IS THERE IS A CHANCE THAT GENERATED TRIGGER NAMES ARE NOT UNIQUE...
 		String triggername = generateNamePartOne()+"_"+businessRuleToActivate.getLhsValue().abbreviateEntityName()+"_TRIGGER";
 		String tablename = businessRuleToActivate.getEntity();
@@ -78,6 +77,7 @@ public class Application {
 			System.out.println(result);
 		} catch (SQLException e) {
 			e.printStackTrace();
+			businessRuleToActivate.setStatus(businessRuleToActivate.getStatus()^1); //flips the status back if activating the trigger fails;
 		}
 	}
 	
