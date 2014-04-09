@@ -7,7 +7,7 @@ import com.r00lerz.businessRuleGenerator.domain.BrgService;
 import com.r00lerz.businessRuleGenerator.domain.BrgServiceImpl;
 import com.r00lerz.ruleDef.RuleDefException;
 
-public class ActiveRuleAction extends ActionSupport { // implements UserAware
+public class ActivateRuleAction extends ActionSupport { // implements UserAware
 
 	// names of parameters here
 	private int id;
