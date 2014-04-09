@@ -19,7 +19,7 @@
             <exception-mapping exception="java.lang.Exception" result="error"/>
         </global-exception-mappings>
         
-        <action name="activate" class="com.r00lerz.businessRuleGenerator.communication.struts.ActiveRuleAction">
+        <action name="activate" class="com.r00lerz.businessRuleGenerator.communication.struts.ActivateRuleAction">
 			<result>/activate.jsp</result>
 		</action>
 
