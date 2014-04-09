@@ -1,6 +1,9 @@
 package com.r00lerz.businessRuleGenerator.communication.struts;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.struts2.ServletActionContext;
 import org.eclipse.xtext.validation.Issue;
@@ -27,14 +30,19 @@ public class DefineNewRuleAction extends ActionSupport {
 		String realPath = ServletActionContext.getServletContext().getRealPath("/");
 		BrgService service = BrgServiceImpl.getService();
 		
-		String result = "";
+		String id = "";
+		
+		Map<String, Object> result = new HashMap<String, Object>();
+		List<String> errors = new ArrayList<String>();
 		
 		try {
-			result = service.generateRule(lhsValue, operator, rhsValues, realPath);
+			id = service.generateRule(lhsValue, operator, rhsValues, realPath);
+			result.put("success", id);
 		} catch (RuleDefException e) {
 			for (Issue issue : e.getIssues()){
-				result += issue+"\n";
+				errors.add(issue.getMessage());
 			}
+			result.put("errors", errors);
 		}
 		
 		Gson gson = new Gson();
