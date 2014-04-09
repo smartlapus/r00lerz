@@ -27,7 +27,7 @@ public class ActivateRuleAction extends ActionSupport {
 		List<String> errors = new ArrayList<String>();
 
 		Map<String, Object> result = new HashMap<String, Object>();
-		try {//TODO::THINK OF A WAY TO HANDLE THE EXCEPTION
+		try {
 			service.activeBusinessRule(id, realPath);
 			result.put("success", id);
 		} catch (RuleDefException e) {
