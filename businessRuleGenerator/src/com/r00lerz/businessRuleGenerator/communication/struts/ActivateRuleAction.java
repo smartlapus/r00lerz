@@ -19,6 +19,7 @@ public class ActivateRuleAction extends ActionSupport {
 	// names of parameters here
 	private int id;
 	private String result;
+	private String callback;
 
 	@Override
 	public String execute() {
@@ -61,5 +62,21 @@ public class ActivateRuleAction extends ActionSupport {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	public String getResult() {
+		return result;
+	}
+
+	public void setResult(String result) {
+		this.result = result;
+	}
+
+	public String getCallback() {
+		return callback;
+	}
+
+	public void setCallback(String callback) {
+		this.callback = callback;
 	}
 }
