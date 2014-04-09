@@ -18,7 +18,7 @@ public class BusinessRuleDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public long retrieveConsecutiveNumber(String entity_string) {
+	public long retrieveConsecutiveNumber(String entity_string) throws IndexOutOfBoundsException{
 		List result = null;
 		Query query = currentSession.createQuery("SELECT count(entity) FROM BusinessRule WHERE lower(entity) = :entity");
 		query.setParameter("entity", entity_string.toLowerCase());

@@ -15,12 +15,13 @@ public class LanguageDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public Language retrieveLanguageByName(String name) {
+	public Language retrieveLanguageByName(String name) throws IndexOutOfBoundsException {
 		Session session = HibernateUtil.getSession();
 
 		Query query = session.createQuery("FROM Language WHERE lower(name) = :name");
 		query.setParameter("name", name.toLowerCase());
 		List<Language> result = query.list();
 		return result.get(0);
+
 	}
 }

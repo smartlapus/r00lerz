@@ -15,7 +15,7 @@ public class FrontEndRuleTypeDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public FrontEndRuleType retrieveTypeByName(String name) {
+	public FrontEndRuleType retrieveTypeByName(String name) throws IndexOutOfBoundsException{
 		Session session = HibernateUtil.getSession();
 
 		Query query = session.createQuery("FROM FrontEndRuleType WHERE lower(name) = :name");

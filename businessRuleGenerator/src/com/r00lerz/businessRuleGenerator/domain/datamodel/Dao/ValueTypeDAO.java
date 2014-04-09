@@ -15,7 +15,7 @@ public class ValueTypeDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public ValueType retrieveTypeByName(String name) {
+	public ValueType retrieveTypeByName(String name) throws IndexOutOfBoundsException {
 		Query query = currentSession.createQuery("FROM ValueType WHERE lower(name) = :name");
 		query.setParameter("name", name.toLowerCase());
 		List<ValueType> result = query.list();

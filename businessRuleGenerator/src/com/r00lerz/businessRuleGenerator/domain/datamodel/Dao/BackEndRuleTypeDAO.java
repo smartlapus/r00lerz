@@ -15,7 +15,7 @@ public class BackEndRuleTypeDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public BackEndRuleType retrieveTypeByName(String name) {
+	public BackEndRuleType retrieveTypeByName(String name) throws IndexOutOfBoundsException{
 		List<BackEndRuleType> result = null;
 		Session session = HibernateUtil.getSession();
 

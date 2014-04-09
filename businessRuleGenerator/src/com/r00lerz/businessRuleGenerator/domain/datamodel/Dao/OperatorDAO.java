@@ -15,7 +15,7 @@ public class OperatorDAO {
 		currentSession = HibernateUtil.getSession();
 	}
 
-	public Operator retrieveOperatorByName(String name) {
+	public Operator retrieveOperatorByName(String name) throws IndexOutOfBoundsException{
 		Session session = HibernateUtil.getSession();
 
 		Query query = session.createQuery("FROM Operator WHERE lower(name) = :name");
