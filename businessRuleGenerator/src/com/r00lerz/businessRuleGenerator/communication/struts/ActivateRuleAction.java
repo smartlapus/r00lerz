@@ -41,7 +41,7 @@ public class ActivateRuleAction extends ActionSupport {
 			se.printStackTrace();
 			errors.add(se.getMessage());
 		} finally {
-			if (errors.isEmpty()){
+			if (!errors.isEmpty()){
 				result.put("errors", errors);
 			}
 		}
